@@ -352,16 +352,16 @@
   <nav class="navbar" dir="rtl">
   <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
     <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
     </svg>
     <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display: none;">
-      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
     </svg>
   </button>
   
-  <button class="phone-header-btn" data-phone="[business_phone]" aria-label="Call">
+  <button class="phone-header-btn" data-phone="0528246400" aria-label="Call">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
     </svg>
   </button>
 
@@ -818,7 +818,7 @@
         const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
         const phoneNumber = phoneLinks.length > 0 
           ? phoneLinks[0].getAttribute('href').replace('tel:', '')
-          : '[business_phone]';
+          : '0528246400';
         
         window.location.href = 'tel:' + phoneNumber;
         console.log('[Navbar] Phone button clicked');
@@ -849,7 +849,7 @@
 
   <div class="contact-contact-intro-section__divider-wrapper" aria-hidden="true">
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,80 L0,25 Q75,10 150,30 T300,20 Q375,35 450,25 T600,30 Q675,20 750,28 T900,22 Q975,35 1050,25 T1200,20 L1200,80 Z" fill="#FFF0F8"/>
+      <path d="M0,80 L0,25 Q75,10 150,30 T300,20 Q375,35 450,25 T600,30 Q675,20 750,28 T900,22 Q975,35 1050,25 T1200,20 L1200,80 Z" fill="#FFF0F8"></path>
     </svg>
   </div>
 </section>
@@ -864,13 +864,13 @@
       <div class="contact-contact-details-section__card" data-zappy-contact-field="phone">
         <div class="contact-contact-details-section__card-icon">
           <svg data-element-type="icon" data-icon-type="svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7294C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1469 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.4717 11.19 18.67C8.77382 17.0375 6.78253 14.8744 5.37 12.34C3.54868 9.69475 2.43423 6.68619 2.12 3.54C2.09501 3.26344 2.12788 2.98472 2.2165 2.72161C2.30513 2.4585 2.44756 2.21696 2.63457 2.01221C2.82159 1.80746 3.0492 1.6438 3.30306 1.5322C3.55692 1.4206 3.83133 1.36341 4.10899 1.364H7.10899C7.6133 1.35422 8.10212 1.53039 8.4868 1.8573C8.87148 2.18422 9.12476 2.6389 9.19899 3.136C9.33883 4.19614 9.60647 5.23628 9.99899 6.236C10.133 6.54276 10.1796 6.88192 10.133 7.21413C10.0865 7.54634 9.94867 7.85796 9.73699 8.112L8.43999 9.408C9.64756 11.5306 11.3944 13.2774 13.517 14.485L14.813 13.188C15.067 12.9763 15.3787 12.8385 15.7109 12.7919C16.0431 12.7454 16.3822 12.7919 16.689 12.926C17.6884 13.3185 18.7286 13.5862 19.7888 13.726C20.2922 13.8009 20.752 14.0598 21.0807 14.4525C21.4093 14.8452 21.5827 15.3424 21.564 15.852V16.92H22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7294C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1469 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.4717 11.19 18.67C8.77382 17.0375 6.78253 14.8744 5.37 12.34C3.54868 9.69475 2.43423 6.68619 2.12 3.54C2.09501 3.26344 2.12788 2.98472 2.2165 2.72161C2.30513 2.4585 2.44756 2.21696 2.63457 2.01221C2.82159 1.80746 3.0492 1.6438 3.30306 1.5322C3.55692 1.4206 3.83133 1.36341 4.10899 1.364H7.10899C7.6133 1.35422 8.10212 1.53039 8.4868 1.8573C8.87148 2.18422 9.12476 2.6389 9.19899 3.136C9.33883 4.19614 9.60647 5.23628 9.99899 6.236C10.133 6.54276 10.1796 6.88192 10.133 7.21413C10.0865 7.54634 9.94867 7.85796 9.73699 8.112L8.43999 9.408C9.64756 11.5306 11.3944 13.2774 13.517 14.485L14.813 13.188C15.067 12.9763 15.3787 12.8385 15.7109 12.7919C16.0431 12.7454 16.3822 12.7919 16.689 12.926C17.6884 13.3185 18.7286 13.5862 19.7888 13.726C20.2922 13.8009 20.752 14.0598 21.0807 14.4525C21.4093 14.8452 21.5827 15.3424 21.564 15.852V16.92H22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
         </div>
         <div class="contact-contact-details-section__card-content">
           <h3>דברו איתנו</h3>
           <p>חייגו עכשיו ונתחיל לתכנן את האירוע המושלם</p>
-          <a href="tel:[business_phone]" class="contact-contact-details-section__card-link">[business_phone]</a>
+          <a href="tel:0528246400" class="contact-contact-details-section__card-link">0528246400</a>
         </div>
       </div>
 
@@ -878,8 +878,8 @@
       <div class="contact-contact-details-section__card">
         <div class="contact-contact-details-section__card-icon">
           <svg data-element-type="icon" data-icon-type="svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382C16.945 14.119 16.418 14.382 15.891 14.645C15.364 14.908 14.31 15.698 13.783 15.698C13.256 15.698 12.202 15.171 10.621 13.59C9.04 12.009 8.513 10.955 8.513 10.428C8.513 9.901 9.303 8.847 9.566 8.32C9.829 7.793 9.829 7.266 9.566 6.739C9.303 6.212 8.513 5.158 8.25 4.895C7.987 4.632 7.724 4.369 7.46 4.369C7.197 4.369 6.934 4.369 6.671 4.632C6.408 4.895 5.618 5.685 5.618 6.739C5.618 7.793 6.671 9.374 7.724 10.428C8.777 11.482 10.358 12.535 11.412 12.535C12.466 12.535 13.256 11.745 13.519 11.482C13.782 11.219 13.782 10.956 13.782 10.693C13.782 10.43 13.519 9.903 13.783 9.64C14.047 9.377 14.837 8.587 15.1 8.324C15.363 8.061 15.626 8.061 15.889 8.061C16.152 8.061 17.206 8.851 17.469 9.114C17.732 9.377 18.522 10.167 18.522 10.43C18.522 10.693 17.999 14.645 17.472 14.382Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M3 21L4.65 16.8C3.55 15.15 3 13.35 3 11.5C3 6.5 7 2.5 12 2.5C17 2.5 21 6.5 21 11.5C21 16.5 17 20.5 12 20.5C10.15 20.5 8.35 19.95 6.7 18.85L3 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17.472 14.382C16.945 14.119 16.418 14.382 15.891 14.645C15.364 14.908 14.31 15.698 13.783 15.698C13.256 15.698 12.202 15.171 10.621 13.59C9.04 12.009 8.513 10.955 8.513 10.428C8.513 9.901 9.303 8.847 9.566 8.32C9.829 7.793 9.829 7.266 9.566 6.739C9.303 6.212 8.513 5.158 8.25 4.895C7.987 4.632 7.724 4.369 7.46 4.369C7.197 4.369 6.934 4.369 6.671 4.632C6.408 4.895 5.618 5.685 5.618 6.739C5.618 7.793 6.671 9.374 7.724 10.428C8.777 11.482 10.358 12.535 11.412 12.535C12.466 12.535 13.256 11.745 13.519 11.482C13.782 11.219 13.782 10.956 13.782 10.693C13.782 10.43 13.519 9.903 13.783 9.64C14.047 9.377 14.837 8.587 15.1 8.324C15.363 8.061 15.626 8.061 15.889 8.061C16.152 8.061 17.206 8.851 17.469 9.114C17.732 9.377 18.522 10.167 18.522 10.43C18.522 10.693 17.999 14.645 17.472 14.382Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M3 21L4.65 16.8C3.55 15.15 3 13.35 3 11.5C3 6.5 7 2.5 12 2.5C17 2.5 21 6.5 21 11.5C21 16.5 17 20.5 12 20.5C10.15 20.5 8.35 19.95 6.7 18.85L3 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
         </div>
         <div class="contact-contact-details-section__card-content">
@@ -893,8 +893,8 @@
       <div class="contact-contact-details-section__card">
         <div class="contact-contact-details-section__card-icon">
           <svg data-element-type="icon" data-icon-type="svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 21C12 21 19 16.5 19 10C19 6.13401 15.866 3 12 3C8.13401 3 5 6.13401 5 10C5 16.5 12 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 21C12 21 19 16.5 19 10C19 6.13401 15.866 3 12 3C8.13401 3 5 6.13401 5 10C5 16.5 12 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"></circle>
           </svg>
         </div>
         <div class="contact-contact-details-section__card-content">
@@ -908,8 +908,8 @@
       <div class="contact-contact-details-section__card">
         <div class="contact-contact-details-section__card-icon">
           <svg data-element-type="icon" data-icon-type="svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-            <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+            <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
           </svg>
         </div>
         <div class="contact-contact-details-section__card-content">
@@ -928,15 +928,15 @@
         <!-- Decorative star motif -->
         <div class="contact-contact-details-section__star-accent" aria-hidden="true">
           <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 5L61 38H97L68 59L79 92L50 71L21 92L32 59L3 38H39L50 5Z" fill="#00D4B8"/>
+            <path d="M50 5L61 38H97L68 59L79 92L50 71L21 92L32 59L3 38H39L50 5Z" fill="#00D4B8"></path>
           </svg>
         </div>
         <!-- Decorative balloon motif -->
         <div class="contact-contact-details-section__balloon-accent" aria-hidden="true">
           <svg viewBox="0 0 80 120" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="40" cy="45" rx="35" ry="45" fill="#7B2FBE" opacity="0.9"/>
-            <path d="M40 90 Q40 110 30 115" stroke="#7B2FBE" stroke-width="4" fill="none"/>
-            <ellipse cx="30" cy="25" rx="10" ry="15" fill="white" opacity="0.3" transform="rotate(-15 30 25)"/>
+            <ellipse cx="40" cy="45" rx="35" ry="45" fill="#7B2FBE" opacity="0.9"></ellipse>
+            <path d="M40 90 Q40 110 30 115" stroke="#7B2FBE" stroke-width="4" fill="none"></path>
+            <ellipse cx="30" cy="25" rx="10" ry="15" fill="white" opacity="0.3" transform="rotate(-15 30 25)"></ellipse>
           </svg>
         </div>
       </div>
@@ -947,7 +947,7 @@
   <!-- Bottom Divider: Mint Scalloped Transition -->
   <div class="contact-contact-details-section__divider-wrapper" aria-hidden="true">
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,80 L0,40 Q50,35 100,42 T200,38 Q250,42 300,35 T400,40 Q450,38 500,42 T600,35 Q650,40 700,38 T800,42 Q850,35 900,40 T1000,38 Q1050,42 1100,35 T1200,40 L1200,80 Z" fill="#1A0A2E"/>
+      <path d="M0,80 L0,40 Q50,35 100,42 T200,38 Q250,42 300,35 T400,40 Q450,38 500,42 T600,35 Q650,40 700,38 T800,42 Q850,35 900,40 T1000,38 Q1050,42 1100,35 T1200,40 L1200,80 Z" fill="#1A0A2E"></path>
     </svg>
   </div>
 
@@ -957,19 +957,19 @@
   <!-- Decorative pastel shapes -->
   <div class="contact-contact-form-section__deco contact-contact-form-section__deco--heart" aria-hidden="true">
     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M50 88s-35-25-35-50c0-12 10-22 22-22 9 0 13 4 13 4s4-4 13-4c12 0 22 10 22 22 0 25-35 50-35 50z" fill="#FFB3D9" opacity="0.3"/>
+      <path d="M50 88s-35-25-35-50c0-12 10-22 22-22 9 0 13 4 13 4s4-4 13-4c12 0 22 10 22 22 0 25-35 50-35 50z" fill="#FFB3D9" opacity="0.3"></path>
     </svg>
   </div>
   <div class="contact-contact-form-section__deco contact-contact-form-section__deco--star" aria-hidden="true">
     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M50 5l12 37h39L68 63l12 37-30-21-30 21 12-37L5 42h39z" fill="#00D4B8" opacity="0.25"/>
+      <path d="M50 5l12 37h39L68 63l12 37-30-21-30 21 12-37L5 42h39z" fill="#00D4B8" opacity="0.25"></path>
     </svg>
   </div>
   <div class="contact-contact-form-section__deco contact-contact-form-section__deco--balloon" aria-hidden="true">
     <svg viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="60" cy="90" rx="45" ry="55" fill="#7C3AED" opacity="0.2"/>
-      <path d="M60 145 L60 190" stroke="#7C3AED" stroke-width="3" opacity="0.2"/>
-      <path d="M45 165 Q60 175 75 165" stroke="#7C3AED" stroke-width="2" fill="none" opacity="0.2"/>
+      <ellipse cx="60" cy="90" rx="45" ry="55" fill="#7C3AED" opacity="0.2"></ellipse>
+      <path d="M60 145 L60 190" stroke="#7C3AED" stroke-width="3" opacity="0.2"></path>
+      <path d="M45 165 Q60 175 75 165" stroke="#7C3AED" stroke-width="2" fill="none" opacity="0.2"></path>
     </svg>
   </div>
   <div class="contact-contact-form-section__deco contact-contact-form-section__deco--dot1" aria-hidden="true"></div>
@@ -992,18 +992,18 @@
         <div class="contact-form__row">
           <div class="contact-form__group">
             <label class="contact-form__label" for="contact-name">שם מלא *</label>
-            <input class="contact-form__input" type="text" id="contact-name" name="name" placeholder="השם שלך" required>
+            <input class="contact-form__input" type="text" id="contact-name" name="name" placeholder="השם שלך" required="">
           </div>
           <div class="contact-form__group">
             <label class="contact-form__label" for="contact-email">אימייל *</label>
-            <input class="contact-form__input" type="email" id="contact-email" name="email" placeholder="your@email.com" required>
+            <input class="contact-form__input" type="email" id="contact-email" name="email" placeholder="your@email.com" required="">
           </div>
         </div>
 
         <div class="contact-form__row">
           <div class="contact-form__group">
             <label class="contact-form__label" for="contact-phone">טלפון *</label>
-            <input class="contact-form__input" type="tel" id="contact-phone" name="phone" placeholder="050-000-0000" required>
+            <input class="contact-form__input" type="tel" id="contact-phone" name="phone" placeholder="050-000-0000" required="">
           </div>
           <div class="contact-form__group">
             <label class="contact-form__label" for="contact-kids">מספר ילדים משוער</label>
@@ -1013,13 +1013,13 @@
 
         <div class="contact-form__group contact-form__group--full">
           <label class="contact-form__label" for="contact-message">ספרו לנו על האירוע *</label>
-          <textarea class="contact-form__textarea" id="contact-message" name="message" rows="5" placeholder="תארו את האירוע, מיקום, מתנפחים מועדפים, דוכנים, וכל פרט חשוב אחר..." required></textarea>
+          <textarea class="contact-form__textarea" id="contact-message" name="message" rows="5" placeholder="תארו את האירוע, מיקום, מתנפחים מועדפים, דוכנים, וכל פרט חשוב אחר..." required=""></textarea>
         </div>
 
         <!-- Privacy Consent -->
         <div class="privacy-consent">
           <label class="privacy-consent-label">
-            <input type="checkbox" name="privacy_consent" class="privacy-consent-checkbox" required>
+            <input type="checkbox" name="privacy_consent" class="privacy-consent-checkbox" required="">
             <span>קראתי ואני מסכים/ה ל<a href="/terms" target="_blank">תנאי השימוש</a> ול<a href="/privacy" target="_blank">מדיניות הפרטיות</a></span>
           </label>
         </div>
@@ -1029,7 +1029,7 @@
           <button type="submit" class="contact-form__submit btn-primary">
             <span>שליחת הפנייה</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-element-type="icon" data-icon-type="svg">
-              <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </button>
         </div>
@@ -1042,16 +1042,16 @@
         <div class="contact-form__details-links">
           <a href="tel:" class="contact-form__detail-link" data-zappy-contact-field="phone">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-element-type="icon" data-icon-type="svg">
-              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
-            <span>[business_phone]</span>
+            <span>0528246400</span>
           </a>
-          <a href="mailto:[business_email]" class="contact-form__detail-link" data-zappy-contact-field="email">
+          <a href="mailto:hzohar703@gmail.com" class="contact-form__detail-link" data-zappy-contact-field="email">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-element-type="icon" data-icon-type="svg">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
-            <span>[business_email]</span>
+            <span>hzohar703@gmail.com</span>
           </a>
         </div>
       </div>
@@ -1070,10 +1070,10 @@
       <article class="faq-item">
         <div class="faq-icon-wrapper">
           <svg data-element-type="icon" data-icon-type="svg" class="faq-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="24" cy="24" rx="20" ry="18" fill="currentColor" opacity="0.15"/>
-            <path d="M16 28C16 28 18 22 24 22C30 22 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M18 32C18 32 20 36 24 36C28 36 30 32 30 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="24" cy="16" r="4" fill="currentColor" opacity="0.4"/>
+            <ellipse cx="24" cy="24" rx="20" ry="18" fill="currentColor" opacity="0.15"></ellipse>
+            <path d="M16 28C16 28 18 22 24 22C30 22 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+            <path d="M18 32C18 32 20 36 24 36C28 36 30 32 30 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+            <circle cx="24" cy="16" r="4" fill="currentColor" opacity="0.4"></circle>
           </svg>
         </div>
         <div class="faq-content">
@@ -1084,10 +1084,10 @@
       <article class="faq-item">
         <div class="faq-icon-wrapper">
           <svg data-element-type="icon" data-icon-type="svg" class="faq-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="24" cy="24" rx="20" ry="18" fill="currentColor" opacity="0.15"/>
-            <path d="M16 28C16 28 18 22 24 22C30 22 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M18 32C18 32 20 36 24 36C28 36 30 32 30 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="24" cy="16" r="4" fill="currentColor" opacity="0.4"/>
+            <ellipse cx="24" cy="24" rx="20" ry="18" fill="currentColor" opacity="0.15"></ellipse>
+            <path d="M16 28C16 28 18 22 24 22C30 22 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+            <path d="M18 32C18 32 20 36 24 36C28 36 30 32 30 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+            <circle cx="24" cy="16" r="4" fill="currentColor" opacity="0.4"></circle>
           </svg>
         </div>
         <div class="faq-content">
@@ -1098,10 +1098,10 @@
       <article class="faq-item">
         <div class="faq-icon-wrapper">
           <svg data-element-type="icon" data-icon-type="svg" class="faq-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="24" cy="24" rx="20" ry="18" fill="currentColor" opacity="0.15"/>
-            <path d="M16 28C16 28 18 22 24 22C30 22 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M18 32C18 32 20 36 24 36C28 36 30 32 30 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="24" cy="16" r="4" fill="currentColor" opacity="0.4"/>
+            <ellipse cx="24" cy="24" rx="20" ry="18" fill="currentColor" opacity="0.15"></ellipse>
+            <path d="M16 28C16 28 18 22 24 22C30 22 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+            <path d="M18 32C18 32 20 36 24 36C28 36 30 32 30 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+            <circle cx="24" cy="16" r="4" fill="currentColor" opacity="0.4"></circle>
           </svg>
         </div>
         <div class="faq-content">
@@ -1112,10 +1112,10 @@
       <article class="faq-item">
         <div class="faq-icon-wrapper">
           <svg data-element-type="icon" data-icon-type="svg" class="faq-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="24" cy="24" rx="20" ry="18" fill="currentColor" opacity="0.15"/>
-            <path d="M16 28C16 28 18 22 24 22C30 22 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M18 32C18 32 20 36 24 36C28 36 30 32 30 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="24" cy="16" r="4" fill="currentColor" opacity="0.4"/>
+            <ellipse cx="24" cy="24" rx="20" ry="18" fill="currentColor" opacity="0.15"></ellipse>
+            <path d="M16 28C16 28 18 22 24 22C30 22 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+            <path d="M18 32C18 32 20 36 24 36C28 36 30 32 30 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+            <circle cx="24" cy="16" r="4" fill="currentColor" opacity="0.4"></circle>
           </svg>
         </div>
         <div class="faq-content">
@@ -1126,10 +1126,10 @@
       <article class="faq-item">
         <div class="faq-icon-wrapper">
           <svg data-element-type="icon" data-icon-type="svg" class="faq-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="24" cy="24" rx="20" ry="18" fill="currentColor" opacity="0.15"/>
-            <path d="M16 28C16 28 18 22 24 22C30 22 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M18 32C18 32 20 36 24 36C28 36 30 32 30 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="24" cy="16" r="4" fill="currentColor" opacity="0.4"/>
+            <ellipse cx="24" cy="24" rx="20" ry="18" fill="currentColor" opacity="0.15"></ellipse>
+            <path d="M16 28C16 28 18 22 24 22C30 22 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+            <path d="M18 32C18 32 20 36 24 36C28 36 30 32 30 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+            <circle cx="24" cy="16" r="4" fill="currentColor" opacity="0.4"></circle>
           </svg>
         </div>
         <div class="faq-content">
@@ -1168,25 +1168,24 @@
       <ul class="footer-contact">
         <li>
           <span class="contact-icon"><i class="fas fa-envelope"></i></span>
-          <span class="contact-text"><a href="mailto:[business_email]">[business_email]</a></span>
+          <span class="contact-text"><a href="mailto:hzohar703@gmail.com">hzohar703@gmail.com</a></span>
         </li>
         <li>
           <span class="contact-icon"><i class="fas fa-phone"></i></span>
-          <span class="contact-text"><a href="tel:[business_phone]">[business_phone]</a></span>
+          <span class="contact-text"><a href="tel:0528246400">0528246400</a></span>
         </li>
-        <li><a href="/"><span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
-          <span class="contact-text">[business_address]</span></a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%D7%91%D7%90%D7%A8%20%D7%A9%D7%91%D7%A2%2C%20%D7%99%D7%A9%D7%A8%D7%90%D7%9C" target="_blank" rel="noopener noreferrer"><span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+          <span class="contact-text">באר שבע, ישראל</span></a></li>
       </ul>
     </div>
 
     <!-- Business Hours -->
     <div class="footer-col footer-hours-col">
       <h4>שעות פעילות</h4>
-      <ul class="footer-hours">
-        <li><a href="/"><span class="hours-day">ימים א'–ה'</span> <span class="hours-time">09:00–18:00</span></a></li>
-        <li><a href="/"><span class="hours-day">יום ו'</span> <span class="hours-time">09:00–13:00</span></a></li>
-        <li><a href="/"><span class="hours-day">שבת</span> <span class="hours-time">סגור</span></a></li>
-      </ul>
+      <ul class="footer-hours"><li><a href="/"><span class="hours-day">יום א’</span> <span class="hours-time">סגור</span></a></li>
+<li><a href="/"><span class="hours-day">ימים ב’–ה’</span> <span class="hours-time">09:00–17:00</span></a></li>
+<li><a href="/"><span class="hours-day">יום ו’</span> <span class="hours-time">09:00–12:00</span></a></li>
+<li><a href="/"><span class="hours-day">שבת</span> <span class="hours-time">סגור</span></a></li></ul>
     </div>
 
     <!-- Social Media -->
@@ -1214,7 +1213,7 @@
   </div>
 </footer>
   
-  <a href="https://wa.me/[whatsapp_handle]" class="whatsapp-float" aria-label="WhatsApp">
+  <a href="https://wa.me/0528246400" class="whatsapp-float" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
   

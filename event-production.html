@@ -352,16 +352,16 @@
   <nav class="navbar" dir="rtl">
   <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
     <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
     </svg>
     <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display: none;">
-      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
     </svg>
   </button>
   
-  <button class="phone-header-btn" data-phone="[business_phone]" aria-label="Call">
+  <button class="phone-header-btn" data-phone="0528246400" aria-label="Call">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
     </svg>
   </button>
 
@@ -818,7 +818,7 @@
         const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
         const phoneNumber = phoneLinks.length > 0 
           ? phoneLinks[0].getAttribute('href').replace('tel:', '')
-          : '[business_phone]';
+          : '0528246400';
         
         window.location.href = 'tel:' + phoneNumber;
         console.log('[Navbar] Phone button clicked');
@@ -866,7 +866,7 @@
   <!-- Bottom SVG Divider -->
   <div class="intro-divider-wrapper" aria-hidden="true" data-no-icon-edit="true">
     <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,80 L0,30 Q60,15 120,28 T240,22 Q300,30 360,18 T480,25 Q540,30 600,20 T720,28 Q780,30 840,18 T960,25 Q1020,30 1080,20 T1200,28 L1200,80 Z" fill="#FFF0F8"/>
+      <path d="M0,80 L0,30 Q60,15 120,28 T240,22 Q300,30 360,18 T480,25 Q540,30 600,20 T720,28 Q780,30 840,18 T960,25 Q1020,30 1080,20 T1200,28 L1200,80 Z" fill="#FFF0F8"></path>
     </svg>
   </div>
 </section>
@@ -881,52 +881,51 @@
           <!-- Illustrated top-view map -->
           <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" class="map-svg">
             <!-- Ground area -->
-            <rect x="20" y="20" width="460" height="360" rx="30" fill="#FFF0F8" stroke="var(--secondary)" stroke-width="2" stroke-dasharray="8,4"/>
+            <rect x="20" y="20" width="460" height="360" rx="30" fill="#FFF0F8" stroke="var(--secondary)" stroke-width="2" stroke-dasharray="8,4"></rect>
             
             <!-- Zone: Inflatables (top-left area) -->
-            <rect x="40" y="40" width="140" height="130" rx="20" fill="#F5F0FF" stroke="var(--primary)" stroke-width="2"/>
+            <rect x="40" y="40" width="140" height="130" rx="20" fill="#F5F0FF" stroke="var(--primary)" stroke-width="2"></rect>
             <text x="110" y="110" text-anchor="middle" fill="var(--primary)" font-size="14" font-weight="700" font-family="Assistant, sans-serif">מתנפחים</text>
-            <circle cx="70" cy="70" r="12" fill="var(--secondary)" opacity="0.6"/>
-            <circle cx="150" cy="70" r="10" fill="var(--accent)" opacity="0.5"/>
-            <circle cx="110" cy="140" r="14" fill="var(--primary)" opacity="0.4"/>
+            <circle cx="70" cy="70" r="12" fill="var(--secondary)" opacity="0.6"></circle>
+            <circle cx="150" cy="70" r="10" fill="var(--accent)" opacity="0.5"></circle>
+            <circle cx="110" cy="140" r="14" fill="var(--primary)" opacity="0.4"></circle>
 
             <!-- Zone: Food Stalls (top-right area) -->
-            <rect x="320" y="40" width="140" height="130" rx="20" fill="#FFF0F8" stroke="var(--accent)" stroke-width="2"/>
+            <rect x="320" y="40" width="140" height="130" rx="20" fill="#FFF0F8" stroke="var(--accent)" stroke-width="2"></rect>
             <text x="390" y="110" text-anchor="middle" fill="var(--accent)" font-size="14" font-weight="700" font-family="Assistant, sans-serif">דוכני מזון</text>
-            <rect x="340" y="60" width="30" height="20" rx="4" fill="var(--secondary)" opacity="0.7"/>
-            <rect x="380" y="60" width="30" height="20" rx="4" fill="var(--primary)" opacity="0.5"/>
-            <rect x="420" y="60" width="30" height="20" rx="4" fill="var(--accent)" opacity="0.6"/>
-            <rect x="360" y="130" width="80" height="20" rx="10" fill="var(--secondary)" opacity="0.5"/>
+            <rect x="340" y="60" width="30" height="20" rx="4" fill="var(--secondary)" opacity="0.7"></rect>
+            <rect x="380" y="60" width="30" height="20" rx="4" fill="var(--primary)" opacity="0.5"></rect>
+            <rect x="420" y="60" width="30" height="20" rx="4" fill="var(--accent)" opacity="0.6"></rect>
+            <rect x="360" y="130" width="80" height="20" rx="10" fill="var(--secondary)" opacity="0.5"></rect>
 
             <!-- Zone: Games (bottom-left area) -->
-            <rect x="40" y="230" width="140" height="130" rx="20" fill="#F5F0FF" stroke="var(--secondary)" stroke-width="2"/>
+            <rect x="40" y="230" width="140" height="130" rx="20" fill="#F5F0FF" stroke="var(--secondary)" stroke-width="2"></rect>
             <text x="110" y="300" text-anchor="middle" fill="#7B2FBE" font-size="14" font-weight="700" font-family="Assistant, sans-serif">ביתני משחק</text>
-            <circle cx="70" cy="260" r="10" fill="var(--accent)" opacity="0.5"/>
-            <circle cx="150" cy="260" r="12" fill="var(--primary)" opacity="0.4"/>
-            <rect x="55" y="310" width="110" height="30" rx="8" fill="var(--secondary)" opacity="0.4"/>
+            <circle cx="70" cy="260" r="10" fill="var(--accent)" opacity="0.5"></circle>
+            <circle cx="150" cy="260" r="12" fill="var(--primary)" opacity="0.4"></circle>
+            <rect x="55" y="310" width="110" height="30" rx="8" fill="var(--secondary)" opacity="0.4"></rect>
 
             <!-- Zone: Seating (bottom-right area) -->
-            <rect x="320" y="230" width="140" height="130" rx="20" fill="#FFF0F8" stroke="var(--primary)" stroke-width="2"/>
+            <rect x="320" y="230" width="140" height="130" rx="20" fill="#FFF0F8" stroke="var(--primary)" stroke-width="2"></rect>
             <text x="390" y="300" text-anchor="middle" fill="var(--primary)" font-size="14" font-weight="700" font-family="Assistant, sans-serif">פינת ישיבה</text>
-            <rect x="340" y="260" width="100" height="15" rx="7" fill="var(--secondary)" opacity="0.6"/>
-            <rect x="340" y="285" width="100" height="15" rx="7" fill="var(--secondary)" opacity="0.4"/>
-            <rect x="340" y="310" width="100" height="15" rx="7" fill="var(--secondary)" opacity="0.6"/>
+            <rect x="340" y="260" width="100" height="15" rx="7" fill="var(--secondary)" opacity="0.6"></rect>
+            <rect x="340" y="285" width="100" height="15" rx="7" fill="var(--secondary)" opacity="0.4"></rect>
+            <rect x="340" y="310" width="100" height="15" rx="7" fill="var(--secondary)" opacity="0.6"></rect>
 
             <!-- Entrance (bottom center) -->
-            <path d="M210,400 L210,350 Q250,320 290,350 L290,400 Z" fill="var(--accent)" opacity="0.3" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4,2"/>
+            <path d="M210,400 L210,350 Q250,320 290,350 L290,400 Z" fill="var(--accent)" opacity="0.3" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4,2"></path>
             <text x="250" y="385" text-anchor="middle" fill="var(--accent)" font-size="12" font-weight="700" font-family="Assistant, sans-serif">כניסה</text>
 
             <!-- Movement paths (dashed lines) -->
-            <path d="M110,170 Q110,200 110,230" fill="none" stroke="var(--primary)" stroke-width="2" stroke-dasharray="6,4" opacity="0.5"/>
-            <path d="M390,170 Q390,200 390,230" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6,4" opacity="0.5"/>
-            <path d="M180,110 Q250,110 320,110" fill="none" stroke="var(--secondary)" stroke-width="2" stroke-dasharray="6,4" opacity="0.6"/>
-            <path d="M180,300 Q250,300 320,300" fill="none" stroke="var(--secondary)" stroke-width="2" stroke-dasharray="6,4" opacity="0.6"/>
+            <path d="M110,170 Q110,200 110,230" fill="none" stroke="var(--primary)" stroke-width="2" stroke-dasharray="6,4" opacity="0.5"></path>
+            <path d="M390,170 Q390,200 390,230" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6,4" opacity="0.5"></path>
+            <path d="M180,110 Q250,110 320,110" fill="none" stroke="var(--secondary)" stroke-width="2" stroke-dasharray="6,4" opacity="0.6"></path>
+            <path d="M180,300 Q250,300 320,300" fill="none" stroke="var(--secondary)" stroke-width="2" stroke-dasharray="6,4" opacity="0.6"></path>
 
             <!-- Photo moment star -->
             <text x="250" y="55" text-anchor="middle" fill="var(--accent)" font-size="24">★</text>
             <text x="250" y="75" text-anchor="middle" fill="var(--accent)" font-size="10" font-weight="600" font-family="Assistant, sans-serif">פינת צילום</text>
-          </svg>
-        </div>
+          </svg>באר שבע, ישראל</div>
         <p class="map-caption">תכנון חכם מבטיח זרימה מושלמת באירוע</p>
       </div>
     </div>
@@ -943,8 +942,8 @@
         <div class="planning-point">
           <div class="point-icon-wrapper">
             <svg data-element-type="icon" data-icon-type="svg" class="point-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-              <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+              <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </div>
           <div class="point-content">
@@ -956,8 +955,8 @@
         <div class="planning-point">
           <div class="point-icon-wrapper">
             <svg data-element-type="icon" data-icon-type="svg" class="point-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-              <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+              <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </div>
           <div class="point-content">
@@ -969,8 +968,8 @@
         <div class="planning-point">
           <div class="point-icon-wrapper">
             <svg data-element-type="icon" data-icon-type="svg" class="point-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-              <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+              <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </div>
           <div class="point-content">
@@ -982,8 +981,8 @@
         <div class="planning-point">
           <div class="point-icon-wrapper">
             <svg data-element-type="icon" data-icon-type="svg" class="point-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-              <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+              <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </div>
           <div class="point-content">
@@ -1002,11 +1001,11 @@
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="planning-divider-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="var(--accent)"/>
-          <stop offset="100%" stop-color="#7B2FBE"/>
+          <stop offset="0%" stop-color="var(--accent)"></stop>
+          <stop offset="100%" stop-color="#7B2FBE"></stop>
         </linearGradient>
       </defs>
-      <path d="M0,80 L0,0 L1200,80 L1200,80 Z" fill="#2D1B69"/>
+      <path d="M0,80 L0,0 L1200,80 L1200,80 Z" fill="#2D1B69"></path>
     </svg>
   </div>
 </section>
@@ -1023,17 +1022,17 @@
       <div class="package-card">
         <div class="package-icon-wrapper">
           <svg class="package-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" data-element-type="icon" data-icon-type="svg">
-            <circle cx="32" cy="32" r="30" fill="url(#cakeGrad)"/>
-            <path d="M20 38h24v4c0 4-2 8-12 8s-12-4-12-8v-4z" fill="#FFB3D9" stroke="#7C3AED" stroke-width="1.5"/>
-            <rect x="22" y="28" width="20" height="10" rx="3" fill="#FFE0F0" stroke="#7C3AED" stroke-width="1.5"/>
-            <circle cx="26" cy="22" r="3" fill="#FF6B5A"/>
-            <circle cx="38" cy="22" r="3" fill="#FF6B5A"/>
-            <path d="M26 22c0-2 2-4 4-4h4c2 0 4 2 4 4" fill="none" stroke="#FF6B5A" stroke-width="2" stroke-linecap="round"/>
-            <path d="M32 18v4" stroke="#FF6B5A" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="32" cy="32" r="30" fill="url(#cakeGrad)"></circle>
+            <path d="M20 38h24v4c0 4-2 8-12 8s-12-4-12-8v-4z" fill="#FFB3D9" stroke="#7C3AED" stroke-width="1.5"></path>
+            <rect x="22" y="28" width="20" height="10" rx="3" fill="#FFE0F0" stroke="#7C3AED" stroke-width="1.5"></rect>
+            <circle cx="26" cy="22" r="3" fill="#FF6B5A"></circle>
+            <circle cx="38" cy="22" r="3" fill="#FF6B5A"></circle>
+            <path d="M26 22c0-2 2-4 4-4h4c2 0 4 2 4 4" fill="none" stroke="#FF6B5A" stroke-width="2" stroke-linecap="round"></path>
+            <path d="M32 18v4" stroke="#FF6B5A" stroke-width="2.5" stroke-linecap="round"></path>
             <defs>
               <linearGradient id="cakeGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FFF0F8"/>
-                <stop offset="1" stop-color="#FFD6E8"/>
+                <stop stop-color="#FFF0F8"></stop>
+                <stop offset="1" stop-color="#FFD6E8"></stop>
               </linearGradient>
             </defs>
           </svg>
@@ -1069,17 +1068,17 @@
         <div class="package-badge">הכי מבוקש</div>
         <div class="package-icon-wrapper">
           <svg class="package-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" data-element-type="icon" data-icon-type="svg">
-            <circle cx="32" cy="32" r="30" fill="url(#schoolGrad)"/>
-            <rect x="16" y="22" width="32" height="26" rx="4" fill="#FFE0F0" stroke="#7C3AED" stroke-width="1.5"/>
-            <path d="M16 32h32" stroke="#7C3AED" stroke-width="1.5"/>
-            <rect x="20" y="14" width="24" height="8" rx="3" fill="#FFB3D9" stroke="#7C3AED" stroke-width="1.5"/>
-            <circle cx="28" cy="40" r="3" fill="#00D4B8"/>
-            <circle cx="36" cy="40" r="3" fill="#00D4B8"/>
-            <path d="M44 38v12c0 2-2 4-4 4H24c-2 0-4-2-4-4v-12" stroke="#7C3AED" stroke-width="1.5"/>
+            <circle cx="32" cy="32" r="30" fill="url(#schoolGrad)"></circle>
+            <rect x="16" y="22" width="32" height="26" rx="4" fill="#FFE0F0" stroke="#7C3AED" stroke-width="1.5"></rect>
+            <path d="M16 32h32" stroke="#7C3AED" stroke-width="1.5"></path>
+            <rect x="20" y="14" width="24" height="8" rx="3" fill="#FFB3D9" stroke="#7C3AED" stroke-width="1.5"></rect>
+            <circle cx="28" cy="40" r="3" fill="#00D4B8"></circle>
+            <circle cx="36" cy="40" r="3" fill="#00D4B8"></circle>
+            <path d="M44 38v12c0 2-2 4-4 4H24c-2 0-4-2-4-4v-12" stroke="#7C3AED" stroke-width="1.5"></path>
             <defs>
               <linearGradient id="schoolGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FFF0F8"/>
-                <stop offset="1" stop-color="#E8D5F5"/>
+                <stop stop-color="#FFF0F8"></stop>
+                <stop offset="1" stop-color="#E8D5F5"></stop>
               </linearGradient>
             </defs>
           </svg>
@@ -1114,18 +1113,18 @@
       <div class="package-card">
         <div class="package-icon-wrapper">
           <svg class="package-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" data-element-type="icon" data-icon-type="svg">
-            <circle cx="32" cy="32" r="30" fill="url(#corpGrad)"/>
-            <rect x="14" y="28" width="36" height="22" rx="4" fill="#FFE0F0" stroke="#7C3AED" stroke-width="1.5"/>
-            <rect x="18" y="32" width="12" height="8" rx="2" fill="#FFB3D9"/>
-            <rect x="34" y="32" width="12" height="8" rx="2" fill="#FFB3D9"/>
-            <path d="M20 20h8v8h-8z" fill="#FFB3D9" stroke="#7C3AED" stroke-width="1.5"/>
-            <path d="M36 20h8v8h-8z" fill="#FFB3D9" stroke="#7C3AED" stroke-width="1.5"/>
-            <path d="M24 20v-4c0-2 2-4 4-4h8c2 0 4 2 4 4v4" stroke="#7C3AED" stroke-width="1.5"/>
-            <circle cx="32" cy="44" r="4" fill="#FF6B5A"/>
+            <circle cx="32" cy="32" r="30" fill="url(#corpGrad)"></circle>
+            <rect x="14" y="28" width="36" height="22" rx="4" fill="#FFE0F0" stroke="#7C3AED" stroke-width="1.5"></rect>
+            <rect x="18" y="32" width="12" height="8" rx="2" fill="#FFB3D9"></rect>
+            <rect x="34" y="32" width="12" height="8" rx="2" fill="#FFB3D9"></rect>
+            <path d="M20 20h8v8h-8z" fill="#FFB3D9" stroke="#7C3AED" stroke-width="1.5"></path>
+            <path d="M36 20h8v8h-8z" fill="#FFB3D9" stroke="#7C3AED" stroke-width="1.5"></path>
+            <path d="M24 20v-4c0-2 2-4 4-4h8c2 0 4 2 4 4v4" stroke="#7C3AED" stroke-width="1.5"></path>
+            <circle cx="32" cy="44" r="4" fill="#FF6B5A"></circle>
             <defs>
               <linearGradient id="corpGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FFF0F8"/>
-                <stop offset="1" stop-color="#FFD6E8"/>
+                <stop stop-color="#FFF0F8"></stop>
+                <stop offset="1" stop-color="#FFD6E8"></stop>
               </linearGradient>
             </defs>
           </svg>
@@ -1165,7 +1164,7 @@
   <!-- Bottom Scalloped Divider -->
   <div class="packages-divider-wrapper">
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,60 L0,30 Q25,20 50,28 T100,22 Q125,28 150,20 T200,26 Q225,20 250,28 T300,22 Q325,28 350,20 T400,26 Q425,20 450,28 T500,22 Q525,28 550,20 T600,26 Q625,20 650,28 T700,22 Q725,28 750,20 T800,26 Q825,20 850,28 T900,22 Q925,28 950,20 T1000,26 Q1025,20 1050,28 T1100,22 Q1125,28 1150,20 T1200,26 L1200,60 Z" fill="var(--bg-light)"/>
+      <path d="M0,60 L0,30 Q25,20 50,28 T100,22 Q125,28 150,20 T200,26 Q225,20 250,28 T300,22 Q325,28 350,20 T400,26 Q425,20 450,28 T500,22 Q525,28 550,20 T600,26 Q625,20 650,28 T700,22 Q725,28 750,20 T800,26 Q825,20 850,28 T900,22 Q925,28 950,20 T1000,26 Q1025,20 1050,28 T1100,22 Q1125,28 1150,20 T1200,26 L1200,60 Z" fill="var(--bg-light)"></path>
     </svg>
   </div>
 </section>
@@ -1235,15 +1234,15 @@
   <!-- Bottom Divider: Lavender Bubble Wave -->
   <div class="proof-divider-wrapper">
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,80 L0,35 Q40,28 80,35 T160,30 Q200,35 240,28 T320,35 Q360,30 400,35 T480,28 Q520,35 560,30 T640,35 Q680,28 720,35 T800,30 Q840,35 880,28 T960,35 Q1000,30 1040,35 T1120,28 Q1160,35 1200,30 L1200,80 Z" fill="#1A0A2E"/>
-      <circle cx="80" cy="32" r="6" fill="var(--secondary)" opacity="0.4"/>
-      <circle cx="240" cy="28" r="8" fill="var(--accent)" opacity="0.3"/>
-      <circle cx="400" cy="35" r="5" fill="var(--primary)" opacity="0.35"/>
-      <circle cx="560" cy="30" r="7" fill="var(--secondary)" opacity="0.4"/>
-      <circle cx="720" cy="33" r="6" fill="var(--accent)" opacity="0.3"/>
-      <circle cx="880" cy="28" r="9" fill="var(--primary)" opacity="0.35"/>
-      <circle cx="1040" cy="32" r="5" fill="var(--secondary)" opacity="0.4"/>
-      <circle cx="1160" cy="28" r="7" fill="var(--accent)" opacity="0.3"/>
+      <path d="M0,80 L0,35 Q40,28 80,35 T160,30 Q200,35 240,28 T320,35 Q360,30 400,35 T480,28 Q520,35 560,30 T640,35 Q680,28 720,35 T800,30 Q840,35 880,28 T960,35 Q1000,30 1040,35 T1120,28 Q1160,35 1200,30 L1200,80 Z" fill="#1A0A2E"></path>
+      <circle cx="80" cy="32" r="6" fill="var(--secondary)" opacity="0.4"></circle>
+      <circle cx="240" cy="28" r="8" fill="var(--accent)" opacity="0.3"></circle>
+      <circle cx="400" cy="35" r="5" fill="var(--primary)" opacity="0.35"></circle>
+      <circle cx="560" cy="30" r="7" fill="var(--secondary)" opacity="0.4"></circle>
+      <circle cx="720" cy="33" r="6" fill="var(--accent)" opacity="0.3"></circle>
+      <circle cx="880" cy="28" r="9" fill="var(--primary)" opacity="0.35"></circle>
+      <circle cx="1040" cy="32" r="5" fill="var(--secondary)" opacity="0.4"></circle>
+      <circle cx="1160" cy="28" r="7" fill="var(--accent)" opacity="0.3"></circle>
     </svg>
   </div>
 </section>
@@ -1252,25 +1251,25 @@
   <!-- Decorative confetti shapes (behind content) -->
   <div class="event-production-cta-panel-section__confetti" aria-hidden="true">
     <svg class="confetti-star confetti-star--1" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20 2l4.5 13.8h14.6l-11.8 8.5 4.5 13.8-11.8-8.5-11.8 8.5 4.5-13.8-11.8-8.5h14.6z" fill="var(--accent)" opacity="0.5"/>
+      <path d="M20 2l4.5 13.8h14.6l-11.8 8.5 4.5 13.8-11.8-8.5-11.8 8.5 4.5-13.8-11.8-8.5h14.6z" fill="var(--accent)" opacity="0.5"></path>
     </svg>
     <svg class="confetti-circle confetti-circle--1" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="15" cy="15" r="15" fill="var(--secondary)" opacity="0.3"/>
+      <circle cx="15" cy="15" r="15" fill="var(--secondary)" opacity="0.3"></circle>
     </svg>
     <svg class="confetti-heart confetti-heart--1" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20 10c-5-8-18-2-18 10 0 8 18 18 18 18s18-10 18-18c0-12-13-18-18-10z" fill="#FF2D55" opacity="0.4"/>
+      <path d="M20 10c-5-8-18-2-18 10 0 8 18 18 18 18s18-10 18-18c0-12-13-18-18-10z" fill="#FF2D55" opacity="0.4"></path>
     </svg>
     <svg class="confetti-star confetti-star--2" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 1l3.4 10.3h10.9l-8.8 6.4 3.4 10.3-8.9-6.4-8.8 6.4 3.4-10.3-8.8-6.4h10.9z" fill="var(--accent)" opacity="0.3"/>
+      <path d="M15 1l3.4 10.3h10.9l-8.8 6.4 3.4 10.3-8.9-6.4-8.8 6.4 3.4-10.3-8.8-6.4h10.9z" fill="var(--accent)" opacity="0.3"></path>
     </svg>
     <svg class="confetti-circle confetti-circle--2" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="10" cy="10" r="10" fill="var(--secondary)" opacity="0.25"/>
+      <circle cx="10" cy="10" r="10" fill="var(--secondary)" opacity="0.25"></circle>
     </svg>
     <svg class="confetti-heart confetti-heart--2" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 7c-3.7-6-13.5-1.5-13.5 7.5 0 6 13.5 13.5 13.5 13.5s13.5-7.5 13.5-13.5c0-9-9.8-13.5-13.5-7.5z" fill="#FF2D55" opacity="0.3"/>
+      <path d="M15 7c-3.7-6-13.5-1.5-13.5 7.5 0 6 13.5 13.5 13.5 13.5s13.5-7.5 13.5-13.5c0-9-9.8-13.5-13.5-7.5z" fill="#FF2D55" opacity="0.3"></path>
     </svg>
     <svg class="confetti-star confetti-star--3" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12.5 0l2.8 8.6h9.1l-7.4 5.3 2.8 8.6-7.3-5.3-7.4 5.3 2.8-8.6-7.4-5.3h9.1z" fill="var(--accent)" opacity="0.35"/>
+      <path d="M12.5 0l2.8 8.6h9.1l-7.4 5.3 2.8 8.6-7.3-5.3-7.4 5.3 2.8-8.6-7.4-5.3h9.1z" fill="var(--accent)" opacity="0.35"></path>
     </svg>
   </div>
 
@@ -1282,7 +1281,7 @@
     <a href="/contact" class="event-production-cta-panel-section__cta btn-primary">
       צרו קשר עכשיו
       <svg class="cta-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
     </a>
   </div>
@@ -1292,13 +1291,13 @@
     <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <radialGradient id="heartGrad" cx="35%" cy="30%" r="70%">
-          <stop offset="0%" stop-color="#FF6B7F"/>
-          <stop offset="100%" stop-color="#FF2D55"/>
+          <stop offset="0%" stop-color="#FF6B7F"></stop>
+          <stop offset="100%" stop-color="#FF2D55"></stop>
         </radialGradient>
       </defs>
-      <path d="M40 20c-10-16-36-4-36 20 0 16 36 36 36 36s36-20 36-36c0-24-26-36-36-20z" fill="url(#heartGrad)"/>
-      <ellipse cx="30" cy="28" rx="6" ry="4" fill="white" opacity="0.35" transform="rotate(-25 30 28)"/>
-      <path d="M40 76 L40 85 Q40 90 36 90 Q32 90 32 85 L32 76" fill="#FF2D55" opacity="0.8"/>
+      <path d="M40 20c-10-16-36-4-36 20 0 16 36 36 36 36s36-20 36-36c0-24-26-36-36-20z" fill="url(#heartGrad)"></path>
+      <ellipse cx="30" cy="28" rx="6" ry="4" fill="white" opacity="0.35" transform="rotate(-25 30 28)"></ellipse>
+      <path d="M40 76 L40 85 Q40 90 36 90 Q32 90 32 85 L32 76" fill="#FF2D55" opacity="0.8"></path>
     </svg>
   </div>
 </section>
@@ -1330,25 +1329,24 @@
       <ul class="footer-contact">
         <li>
           <span class="contact-icon"><i class="fas fa-envelope"></i></span>
-          <span class="contact-text"><a href="mailto:[business_email]">[business_email]</a></span>
+          <span class="contact-text"><a href="mailto:hzohar703@gmail.com">hzohar703@gmail.com</a></span>
         </li>
         <li>
           <span class="contact-icon"><i class="fas fa-phone"></i></span>
-          <span class="contact-text"><a href="tel:[business_phone]">[business_phone]</a></span>
+          <span class="contact-text"><a href="tel:0528246400">0528246400</a></span>
         </li>
-        <li><a href="/"><span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
-          <span class="contact-text">[business_address]</span></a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%D7%91%D7%90%D7%A8%20%D7%A9%D7%91%D7%A2%2C%20%D7%99%D7%A9%D7%A8%D7%90%D7%9C" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:flex-start;gap:inherit"><span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+          <span class="contact-text">באר שבע, ישראל</span></a></li>
       </ul>
     </div>
 
     <!-- Business Hours -->
     <div class="footer-col footer-hours-col">
       <h4>שעות פעילות</h4>
-      <ul class="footer-hours">
-        <li><a href="/"><span class="hours-day">ימים א'–ה'</span> <span class="hours-time">09:00–18:00</span></a></li>
-        <li><a href="/"><span class="hours-day">יום ו'</span> <span class="hours-time">09:00–13:00</span></a></li>
-        <li><a href="/"><span class="hours-day">שבת</span> <span class="hours-time">סגור</span></a></li>
-      </ul>
+      <ul class="footer-hours"><li><a href="/"><span class="hours-day">יום א’</span> <span class="hours-time">סגור</span></a></li>
+<li><a href="/"><span class="hours-day">ימים ב’–ה’</span> <span class="hours-time">09:00–17:00</span></a></li>
+<li><a href="/"><span class="hours-day">יום ו’</span> <span class="hours-time">09:00–12:00</span></a></li>
+<li><a href="/"><span class="hours-day">שבת</span> <span class="hours-time">סגור</span></a></li></ul>
     </div>
 
     <!-- Social Media -->
@@ -1376,7 +1374,7 @@
   </div>
 </footer>
   
-  <a href="https://wa.me/[whatsapp_handle]" class="whatsapp-float" aria-label="WhatsApp">
+  <a href="https://wa.me/0528246400" class="whatsapp-float" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
   
