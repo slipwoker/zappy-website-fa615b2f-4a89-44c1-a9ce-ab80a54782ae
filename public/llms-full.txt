@@ -2,13 +2,13 @@
 
 A vibrant and fun inflatable entertainment business specializing in birthday parties and events. The business offers a wide range of services including jumping inflatables for kids, decorative inflatables, game booths, food stalls, and full event production. The brand is energetic, colorful, and family-friendly, targeting parents and event organizers looking to create memorable celebrations for children.
 
-Source: https://lollipop-fa615b2f.zappy5.app
+Source: https://example.com
 
 ---
 
 ## הפוך כל חגיגה לאירוע בלתי נשכח — LOLLIPOP
 
-URL: https://lollipop-fa615b2f.zappy5.app
+URL: https://example.com
 Description: LOLLIPOP מביאה לכם עולם של מתקנים מתנפחים, דוכני משחק וצבע לאירועים. תנו לילדים שלכם את המסיבה הכי שמחה ומרגשת שהם חלמו עליה. צרו איתנו קשר עוד היום!
 
 הפוך כל חגיגה לאירוע בלתי נשכח — LOLLIPOP
@@ -488,7 +488,7 @@ Description: LOLLIPOP מביאה לכם עולם של מתקנים מתנפחי�
 
 ## גלו את שלל המתנפחים והאטרקציות שלנו — LOLLIPOP
 
-URL: https://lollipop-fa615b2f.zappy5.app/services
+URL: https://example.com/services
 Description: מחפשים אטרקציה מושלמת לאירוע? מגוון שירותי LOLLIPOP כולל מתנפחים צבעוניים, עמדות מזון ודוכני הפעלה שיהפכו כל מסיבה לחגיגה אמיתית. היכנסו לבחור את הכיף שלכם!
 
 גלו את שלל המתנפחים והאטרקציות שלנו — LOLLIPOP
@@ -988,7 +988,7 @@ Description: מחפשים אטרקציה מושלמת לאירוע? מגוון �
 
 ## הפקת אירוע מושלם בלי דאגות — LOLLIPOP
 
-URL: https://lollipop-fa615b2f.zappy5.app/event-production
+URL: https://example.com/event-production
 Description: צריכים יד מקצועית להפקת האירוע? LOLLIPOP מתמחים בהפקה כוללת של אירועים צבעוניים ומלאי חיים, משלב הרעיון ועד הביצוע האחרון. הפכו כל חלום לחגיגה בלתי נשכחת!
 
 הפקת אירוע מושלם בלי דאגות — LOLLIPOP
@@ -1497,7 +1497,7 @@ Description: צריכים יד מקצועית להפקת האירוע? LOLLIPOP 
 
 ## הכירו את הצוות שמביא את הצבע — LOLLIPOP
 
-URL: https://lollipop-fa615b2f.zappy5.app/about
+URL: https://example.com/about
 Description: LOLLIPOP זה לא רק מתנפחים, זו משפחה שמאמינה בכיף אמיתי. גלו את הסיפור מאחורי המותג הצבעוני שלנו ואת התשוקה ליצור אירועים בלתי נשכחים לכל המשפחה. בואו להכיר אותנו!
 
 הכירו את הצוות שמביא את הצבע — LOLLIPOP
@@ -1948,7 +1948,7 @@ Description: LOLLIPOP זה לא רק מתנפחים, זו משפחה שמאמי�
 
 ## תתחילו לתכנן את האירוע המושלם — LOLLIPOP
 
-URL: https://lollipop-fa615b2f.zappy5.app/contact
+URL: https://example.com/contact
 Description: יש לכם רעיון לחגיגה? אנחנו כאן להגשים אותו! צרו קשר עם LOLLIPOP עוד היום ונבנה יחד אירוע בלתי נשכח מלא בצחוק, צבע ומתנפחים שילדים אוהבים. אנחנו מחכים לשמוע מכם!
 
 תתחילו לתכנן את האירוע המושלם — LOLLIPOP
@@ -2397,7 +2397,7 @@ Description: יש לכם רעיון לחגיגה? אנחנו כאן להגשים
 
 ## מדיניות פרטיות
 
-URL: https://lollipop-fa615b2f.zappy5.app/privacy
+URL: https://example.com/privacy
 Description: מדיניות הפרטיות שלנו - כיצד אנו אוספים, משתמשים ומגנים על המידע שלכם
 
 מדיניות פרטיות
@@ -2660,7 +2660,7 @@ LOLLIPOP ("החברה", "אנו", "שלנו") מחויבת להגן על פרט�
 
 ## הצהרת נגישות
 
-URL: https://lollipop-fa615b2f.zappy5.app/accessibility
+URL: https://example.com/accessibility
 Description: הצהרת הנגישות שלנו - מחויבותנו לנגישות דיגיטלית
 
 הצהרת נגישות
@@ -2932,7 +2932,7 @@ LOLLIPOP מחויבת להנגיש את השירותים לכלל הציבור. 
 
 ## תנאי שימוש
 
-URL: https://lollipop-fa615b2f.zappy5.app/terms
+URL: https://example.com/terms
 Description: תנאי השימוש באתר - הזכויות והחובות של המשתמשים
 
 תנאי שימוש
@@ -3223,7 +3223,7 @@ LOLLIPOP מספקת Event Entertainment & Party Rentals דרך האתר. השי�
 
 ## תודה שפניתם אלינו
 
-URL: https://lollipop-fa615b2f.zappy5.app/thank-you
+URL: https://example.com/thank-you
 Description: LOLLIPOP - תודה שפניתם אלינו
 
 תודה שפניתם אלינו
