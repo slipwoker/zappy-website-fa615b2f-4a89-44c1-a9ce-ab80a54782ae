@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <title>הכירו את הצוות שמביא את הצבע — LOLLIPOP</title>
+    <meta name="description" content="LOLLIPOP זה לא רק מתנפחים, זו משפחה שמאמינה בכיף אמיתי. גלו את הסיפור מאחורי המותג הצבעוני שלנו ואת התשוקה ליצור אירועים בלתי נשכחים לכל המשפחה. בואו להכיר אותנו!">
+    <meta name="keywords" content="LOLLIPOP, אודותינו, צוות LOLLIPOP, אירוע בלתי נשכח, מותג משפחתי">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <!-- Zappy Analytics -->
+<script>
+(function() {
+  'use strict';
+  
+  // Configuration
+  var config = {
+    websiteId: 'fa615b2f-4a89-44c1-a9ce-ab80a54782ae',
+    apiUrl: 'https://api.zappy5.com/api/analytics/track',
+    sessionDuration: 30 * 60 * 1000, // 30 minutes
+    visitorDuration: 30 * 24 * 60 * 60 * 1000, // 30 days
+    trackPageViews: true,
+    trackClicks: true,
+    trackFormSubmissions: true
+  };
+  
+  // Generate or retrieve persistent visitor ID (30 days)
+  function getVisitorId() {
+    var visitorKey = 'zappy_visitor_' + config.websiteId;
+    var visitor = null;
+    
+    try {
+      visitor = localStorage.getItem(visitorKey);
+      if (visitor) {
+        var visitorData = JSON.parse(visitor);
+        var now = Date.now();
+        
+        // Check if visitor ID is still valid (30 days)
+        if (now - visitorData.created < config.visitorDuration) {
+          // Update last seen timestamp
+          visitorData.lastSeen = now;
+          localStorage.setItem(visitorKey, JSON.stringify(visitorData));
+          return visitorData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: LocalStorage not available');
+    }
+    
+    // Generate new visitor ID
+    var newVisitorId = 'zv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      localStorage.setItem(visitorKey, JSON.stringify({
+        id: newVisitorId,
+        created: Date.now(),
+        lastSeen: Date.now()
+      }));
+    } catch (e) {
+      // Continue without local storage
+    }
+    
+    return newVisitorId;
+  }
+  
+  // Generate or retrieve session ID (30 minutes)
+  function getSessionId() {
+    var sessionKey = 'zappy_session_' + config.websiteId;
+    var session = null;
+    
+    try {
+      session = sessionStorage.getItem(sessionKey);
+      if (session) {
+        var sessionData = JSON.parse(session);
+        var now = Date.now();
+        
+        // Check if session is still valid
+        if (now - sessionData.timestamp < config.sessionDuration) {
+          // Update timestamp
+          sessionData.timestamp = now;
+          sessionStorage.setItem(sessionKey, JSON.stringify(sessionData));
+          return sessionData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: SessionStorage not available');
+    }
+    
+    // Generate new session ID
+    var newSessionId = 'zs_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      sessionStorage.setItem(sessionKey, JSON.stringify({
+        id: newSessionId,
+        timestamp: Date.now()
+      }));
+    } catch (e) {
+      // Continue without session storage
+    }
+    
+    return newSessionId;
+  }
+  
+  var visitorId = getVisitorId();
+  var sessionId = getSessionId();
+  
+  // Track an event
+  function trackEvent(eventType, data) {
+    data = data || {};
+    
+    var eventData = {
+      website_id: config.websiteId,
+      event_type: eventType,
+      page_path: window.location.pathname,
+      referrer: document.referrer || 'direct',
+      visitor_id: visitorId,
+      session_id: sessionId,
+      metadata: data
+    };
+    
+    // Use sendBeacon if available (better for page unload events)
+    if (navigator.sendBeacon) {
+      var blob = new Blob([JSON.stringify(eventData)], { type: 'application/json' });
+      navigator.sendBeacon(config.apiUrl, blob);
+    } else {
+      // Fallback to fetch
+      fetch(config.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(eventData),
+        keepalive: true
+      }).catch(function(error) {
+        console.warn('Zappy Analytics: Failed to track event', error);
+      });
+    }
+  }
+  
+  // Track page view
+  if (config.trackPageViews) {
+    trackEvent('pageview', {
+      title: document.title,
+      url: window.location.href
+    });
+  }
+  
+  // Track clicks on important elements
+  if (config.trackClicks) {
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      
+      // Track button clicks (counted as actions)
+      if (target.tagName === 'BUTTON' || target.closest('button')) {
+        var button = target.tagName === 'BUTTON' ? target : target.closest('button');
+        var clickMeta = {
+          element: 'button',
+          text: button.textContent.trim().substring(0, 100),
+          id: button.id || null,
+          class: button.className || null
+        };
+        
+        trackEvent('click', clickMeta);
+      }
+      
+      // Track link clicks (navigation - not counted as actions)
+      else if (target.tagName === 'A' || target.closest('a')) {
+        var link = target.tagName === 'A' ? target : target.closest('a');
+        var navMeta = {
+          element: 'link',
+          text: link.textContent.trim().substring(0, 100),
+          href: link.href,
+          external: link.hostname !== window.location.hostname
+        };
+        
+        trackEvent('navigation', navMeta);
+      }
+    }, true);
+  }
+  
+  
+  // Track form submissions
+  if (config.trackFormSubmissions) {
+    document.addEventListener('submit', function(e) {
+      var form = e.target;
+      
+      trackEvent('form_submit', {
+        form_id: form.id || null,
+        form_name: form.name || null,
+        form_action: form.action || null,
+        form_method: form.method || 'GET'
+      });
+    }, true);
+  }
+  
+  // Track time on page (send on page unload)
+  var pageLoadTime = Date.now();
+  
+  window.addEventListener('beforeunload', function() {
+    var timeOnPage = Math.floor((Date.now() - pageLoadTime) / 1000); // in seconds
+    
+    trackEvent('page_unload', {
+      time_on_page: timeOnPage,
+      page_path: window.location.pathname
+    });
+  });
+  
+  // Expose tracking function globally for custom events
+  window.zappyAnalytics = {
+    track: trackEvent,
+    getVisitorId: function() { return visitorId; },
+    getSessionId: function() { return sessionId; }
+  };
+  
+})();
+</script>
+<!-- End Zappy Analytics -->
+    <meta property="og:title" content="הכירו את הצוות שמביא את הצבע — LOLLIPOP">
+    <meta property="og:description" content="LOLLIPOP זה לא רק מתנפחים, זו משפחה שמאמינה בכיף אמיתי. גלו את הסיפור מאחורי המותג הצבעוני שלנו ואת התשוקה ליצור אירועים בלתי נשכחים לכל המשפחה. בואו להכיר אותנו!">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="הכירו את הצוות שמביא את הצבע — LOLLIPOP">
+    <meta name="twitter:description" content="LOLLIPOP זה לא רק מתנפחים, זו משפחה שמאמינה בכיף אמיתי. גלו את הסיפור מאחורי המותג הצבעוני שלנו ואת התשוקה ליצור אירועים בלתי נשכחים לכל המשפחה. בואו להכיר אותנו!">
+    <meta property="og:type" content="website">
+  <meta property="og:locale" content="he_IL">
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .skip-link { position: absolute; top: 0; left: 0; transform: translateY(-200%); padding: 12px 18px; background: var(--bg-dark, #1a1a1a); color: var(--text-light, #fff); font-weight: 600; border-radius: 0 0 8px 0; z-index: 10000; }
+    .skip-link:focus { transform: none; outline: 2px solid var(--ring, #fff); outline-offset: 2px; }
+    :focus-visible { outline: 2px solid var(--ring, currentColor); outline-offset: 3px; }
+  </style>
+
+
+  
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css">
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.umd.js"></script>
+    <!-- Mickidum Accessibility Toolbar -->
+    <script src="https://cdn.jsdelivr.net/gh/mickidum/acc_toolbar/acctoolbar/acctoolbar.min.js"></script>
+    <link rel="stylesheet" href="/styles.css">
+    <script>window.ZAPPY_WEBSITE_ID = "fa615b2f-4a89-44c1-a9ce-ab80a54782ae"; window.ZAPPY_API_BASE = "https://api.zappy5.com";</script>
+
+    <style id="zappy-dropdown-submenu-styles">
+      /* ========== DESKTOP DROPDOWN SUBMENU STYLES ========== */
+      /* Base styles for dropdown submenus - parent must be positioned */
+      .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { position: relative; }
+      /* Submenu base - hidden by default */
+      .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { display: block !important; position: absolute !important; top: 100%; left: 0; min-width: 220px; background: white; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 1000; list-style: none; pointer-events: none; }
+      /* CRITICAL: Desktop hover styles to show dropdown */
+      .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Submenu item styling */
+      .sub-menu li { list-style: none; margin: 0; padding: 0; }
+      .sub-menu a { display: block !important; padding: 10px 16px !important; color: var(--text-dark, #333) !important; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background-color 0.2s; }
+      .sub-menu .zappy-nav-child > a { padding-left: 28px !important; font-size: 0.9em !important; opacity: 0.85 !important; }
+      [dir="rtl"] .sub-menu .zappy-nav-child > a, html[lang="he"] .sub-menu .zappy-nav-child > a, html[lang="ar"] .sub-menu .zappy-nav-child > a { padding-left: 10px !important; padding-right: 28px !important; }
+      .sub-menu .zappy-nav-parent > a { font-weight: 600 !important; }
+      .sub-menu a:hover { background-color: #f5f5f5; }
+      /* RTL (Hebrew/Arabic) dropdown positioning */
+      [dir="rtl"] .nav-menu .sub-menu, [dir="rtl"] nav .sub-menu, [dir="rtl"] .navbar .sub-menu, html[lang="he"] .nav-menu .sub-menu, html[lang="he"] nav .sub-menu, html[lang="he"] .navbar .sub-menu, html[lang="ar"] .nav-menu .sub-menu, html[lang="ar"] nav .sub-menu, html[lang="ar"] .navbar .sub-menu { left: auto !important; right: 0 !important; }
+      /* Hide empty dropdown menus (exclude catalog sub-menus that use <a> children instead of <li>) */
+      .sub-menu:empty, .sub-menu:not(:has(li:not(.zappy-hidden-menu-item))):not(:has(> a)), .sub-menu:not(:has(li)):not(:has(> a)) { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+      /* Desktop: show submenu on Menu Group hover */
+      li:has(.menu-group-title):hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Menu Group title styling */
+      .nav-menu > li > .menu-group-title, #navMenu > li > .menu-group-title { display: inline-block; padding: 0.5rem 1rem; cursor: default; user-select: none; }
+      
+      /* ========== MOBILE SUBMENU STYLES ========== */
+      @media (max-width: 768px) {
+        .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { position: static !important; transform: none !important; box-shadow: none !important; background: transparent !important; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; padding: 0 !important; border-radius: 0 !important; }
+        .navbar .sub-menu.mobile-expanded, .nav-menu .sub-menu.mobile-expanded, #navMenu .sub-menu.mobile-expanded { max-height: none !important; overflow-y: visible !important; opacity: 1 !important; visibility: visible !important; padding: 8px 0 8px 16px !important; }
+        [dir="rtl"] .sub-menu.mobile-expanded, html[lang="he"] .sub-menu.mobile-expanded { padding: 8px 16px 8px 0 !important; }
+        /* Disable hover behavior on mobile */
+        .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 0; visibility: hidden; pointer-events: none; }
+        .nav-menu li > .sub-menu.mobile-expanded, nav li > .sub-menu.mobile-expanded, .navbar li > .sub-menu.mobile-expanded, #navMenu li > .sub-menu.mobile-expanded { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+        .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { display: flex !important; flex-wrap: wrap !important; align-items: center !important; position: relative !important; min-height: 44px !important; }
+        .nav-menu li:has(.sub-menu) > a, nav li:has(.sub-menu) > a, .navbar li:has(.sub-menu) > a, #navMenu li:has(.sub-menu) > a { flex: 1 !important; min-width: 0 !important; }
+        .nav-menu li:has(.sub-menu) > .menu-group-title, nav li:has(.sub-menu) > .menu-group-title, .navbar li:has(.sub-menu) > .menu-group-title, #navMenu li:has(.sub-menu) > .menu-group-title { flex: 1 !important; min-width: 0 !important; padding: 0 !important; line-height: inherit !important; }
+        .nav-menu li:has(.sub-menu) > .sub-menu, nav li:has(.sub-menu) > .sub-menu, .navbar li:has(.sub-menu) > .sub-menu, #navMenu li:has(.sub-menu) > .sub-menu { flex-basis: 100% !important; width: 100% !important; }
+        .nav-menu li:has(.sub-menu) > a [class*="chevron"], .nav-menu li:has(.sub-menu) > a [class*="arrow"], .nav-menu li:has(.sub-menu) > a .fa-chevron-down, .nav-menu li:has(.sub-menu) > a .fa-angle-down, nav li:has(.sub-menu) > a [class*="chevron"], nav li:has(.sub-menu) > a [class*="arrow"], #navMenu li:has(.sub-menu) > a [class*="chevron"], #navMenu li:has(.sub-menu) > a [class*="arrow"] { display: none !important; visibility: hidden !important; }
+        .mobile-submenu-toggle { display: flex !important; align-items: center !important; justify-content: center !important; width: 44px !important; height: auto !important; background: transparent !important; border: none !important; cursor: pointer !important; color: var(--text-light) !important; position: static !important; flex-shrink: 0 !important; align-self: stretch !important; z-index: 2 !important; padding: 0 !important; margin: 0 !important; }
+        .mobile-submenu-toggle::after { content: '' !important; width: 0 !important; height: 0 !important; border-left: 6px solid transparent !important; border-right: 6px solid transparent !important; border-top: 7px solid currentColor !important; transition: transform 0.3s ease !important; }
+        .mobile-submenu-toggle.expanded::after { transform: rotate(180deg) !important; }
+        .sub-menu a { padding: 10px 0 !important; display: block !important; color: var(--text-light) !important; white-space: normal !important; }
+        .sub-menu .zappy-nav-child > a { padding-left: 28px !important; font-size: 0.9em !important; opacity: 0.85 !important; }
+        [dir="rtl"] .sub-menu .zappy-nav-child > a, html[lang="he"] .sub-menu .zappy-nav-child > a, html[lang="ar"] .sub-menu .zappy-nav-child > a { padding-left: 0 !important; padding-right: 28px !important; }
+        .sub-menu .zappy-nav-parent > a { font-weight: 600 !important; }
+        .nav-menu.active, #navMenu.active { max-width: 100vw !important; overflow-x: hidden !important; box-sizing: border-box !important; }
+        .navbar .sub-menu li a, nav.navbar .sub-menu li a, .zappy-products-dropdown .sub-menu a { color: var(--text-light) !important; }
+      }
+      @media (min-width: 769px) { .mobile-submenu-toggle { display: none !important; } }
+    </style>
+
+    <style id="zappy-widget-visibility">
+      html[dir="rtl"] .whatsapp-float { right: 20px !important; left: auto !important; }
+      html[dir="ltr"] .whatsapp-float, html:not([dir]) .whatsapp-float { left: 20px !important; right: auto !important; }
+      html[dir="rtl"] #mic-access-tool-general-button, html[dir="rtl"] .mic-access-tool-general-button,
+      html[dir="rtl"] #mic-init-access-tool .mic-access-tool-general-button,
+      html[dir="rtl"] #mic-init-access-tool #mic-access-tool-general-button,
+      html[dir="rtl"] ._access-icon { left: 20px !important; right: auto !important; }
+      html[dir="ltr"] #mic-access-tool-general-button, html[dir="ltr"] .mic-access-tool-general-button,
+      html[dir="ltr"] #mic-init-access-tool .mic-access-tool-general-button,
+      html[dir="ltr"] #mic-init-access-tool #mic-access-tool-general-button,
+      html[dir="ltr"] ._access-icon,
+      html:not([dir]) #mic-access-tool-general-button, html:not([dir]) .mic-access-tool-general-button,
+      html:not([dir]) #mic-init-access-tool .mic-access-tool-general-button,
+      html:not([dir]) #mic-init-access-tool #mic-access-tool-general-button,
+      html:not([dir]) ._access-icon { right: 20px !important; left: auto !important; }
+      @media (max-width: 768px) { .whatsapp-float { display: flex !important; } }
+      @media (min-width: 769px) { .whatsapp-float { display: flex !important; } }
+      @media (max-width: 768px) {
+        #mic-access-tool-general-button, .mic-access-tool-general-button,
+        #mic-init-access-tool .mic-access-tool-general-button, #mic-init-access-tool #mic-access-tool-general-button,
+        ._access-icon { display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
+        #mic-access-tool-box.opened-mic-access-tool, .mic-access-tool-box.opened-mic-access-tool,
+        #mic-init-access-tool #mic-access-tool-box.opened-mic-access-tool {
+          visibility: visible !important; opacity: 1 !important; pointer-events: auto !important;
+        }
+      }
+      @media (min-width: 769px) {
+        #mic-access-tool-general-button, .mic-access-tool-general-button,
+        #mic-init-access-tool .mic-access-tool-general-button, #mic-init-access-tool #mic-access-tool-general-button,
+        ._access-icon { display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
+        #mic-access-tool-box.opened-mic-access-tool, .mic-access-tool-box.opened-mic-access-tool,
+        #mic-init-access-tool #mic-access-tool-box.opened-mic-access-tool {
+          visibility: visible !important; opacity: 1 !important; pointer-events: auto !important;
+        }
+      }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main">דלג לתוכן הראשי</a>
+  <nav class="navbar" dir="rtl">
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display: none;">
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+  
+  <button class="phone-header-btn" data-phone="[business_phone]" aria-label="Call">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </svg>
+  </button>
+
+  <div class="nav-container">
+    <div class="nav-right-group"><div class="nav-brand">
+      <a href="/" class="logo-link"><img class="logo" src="/assets/site-------image-1.webp" alt="LOLLIPOP"></a>
+    </div><ul class="nav-menu" id="navMenu"><li><a href="/">בית</a></li><li><a href="/services">שירותים</a></li><li><a href="/event-production">הפקת אירועים</a></li><li><a href="/about">אודות</a></li><li class="mobile-contact-link nav-cta-mobile-item"><a href="/contact" class="nav-cta-btn">צור קשר</a></li></ul></div>
+    
+    
+    
+    <div class="nav-cta-container">
+      <a href="/contact" class="nav-cta-btn">צור קשר</a>
+    </div>
+  </div>
+</nav>
+<script>
+
+// Navbar Mobile Menu Toggle and Contrast Fix
+(function() {
+  // Use 'load' event instead of 'DOMContentLoaded' to ensure we run AFTER all other scripts
+  window.addEventListener('load', function() {
+    
+    // FIX MOBILE BUTTON CONTRAST
+    // Detect navbar background color and apply contrasting color to mobile buttons
+    const navbar = document.querySelector('.navbar, nav, header');
+    if (!navbar) {
+      console.log('[Navbar] Navbar element not found');
+      return;
+    }
+    
+    // DECLARE VARIABLES EARLY to avoid Temporal Dead Zone errors
+    // These are used in multiple places below
+    let mobileToggle = document.getElementById('mobileToggle') ||
+                       document.querySelector('.mobile-toggle') ||
+                       document.querySelector('.hamburger') ||
+                       document.querySelector('.hamburger-menu') ||
+                       document.querySelector('.menu-toggle') ||
+                       document.querySelector('.burger-menu') ||
+                       document.querySelector('[aria-label="Menu"]') ||
+                       document.querySelector('[aria-label="תפריט"]');
+    
+    const phoneBtn = document.querySelector('.phone-header-btn');
+    
+    const computedStyle = window.getComputedStyle(navbar);
+    let bgColor = computedStyle.backgroundColor;
+    
+    console.log('[Navbar] Initial navbar background:', bgColor);
+    
+    // Check if background is transparent or rgba with 0 alpha
+    const isTransparent = bgColor === 'transparent' || 
+                         bgColor === 'rgba(0, 0, 0, 0)' ||
+                         (bgColor.startsWith('rgba') && bgColor.includes(', 0)'));
+    
+    if (isTransparent) {
+      // Check for background-image or gradient
+      const bgImage = computedStyle.backgroundImage;
+      if (bgImage && bgImage !== 'none') {
+        console.log('[Navbar] Navbar has background image/gradient, using dark text');
+        bgColor = 'rgb(240, 240, 240)'; // Assume light background
+      } else {
+        // Transparent navbar - check body background
+        const bodyBg = window.getComputedStyle(document.body).backgroundColor;
+        console.log('[Navbar] Navbar transparent, using body background:', bodyBg);
+        bgColor = bodyBg;
+      }
+    }
+    
+    // Calculate luminance to determine if background is light or dark
+    const rgb = bgColor.match(/\d+/g);
+    if (rgb && rgb.length >= 3) {
+      const r = parseInt(rgb[0]);
+      const g = parseInt(rgb[1]);
+      const b = parseInt(rgb[2]);
+      const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+      
+      // Mobile button colors are set by Claude's AI-generated CSS (same as .nav-menu a)
+      // No dynamic color overrides needed - colors come from the generated navbar CSS
+      console.log('[Navbar] Mobile button colors preserved from Claude CSS (luminance:', luminance.toFixed(2) + ')');
+      
+      // FIX ICON SIZES - Ensure SVGs are properly sized and visible
+      // INJECT CRITICAL CSS TO OVERRIDE ANY CONFLICTING RULES
+      const criticalCSS = document.createElement('style');
+      criticalCSS.id = 'zappy-mobile-nav-fix';
+      const htmlLang = document.documentElement.lang || 'en';
+      const htmlDir = document.documentElement.dir || 'ltr';
+      // Check both dir attribute AND lang for RTL detection
+      // dir="rtl" is the most reliable indicator
+      const isRTL = htmlDir === 'rtl' || htmlLang === 'he' || htmlLang === 'ar';
+      
+      criticalCSS.textContent = `
+        /* Hide mobile buttons on desktop, show only on mobile */
+        @media (min-width: 769px) {
+          .mobile-toggle,
+          .phone-header-btn {
+            display: none !important;
+          }
+        }
+        
+        /* Show and position mobile buttons correctly on mobile */
+        @media (max-width: 768px) {
+          .navbar,
+          nav.navbar {
+            min-height: 70px !important;
+          }
+
+          .mobile-toggle,
+          .phone-header-btn {
+            position: absolute !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            margin-top: auto !important;
+            margin-bottom: auto !important;
+            transform: none !important;
+            z-index: 1001 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 50% !important;
+            border: none !important;
+            cursor: pointer !important;
+            padding: 6px !important;
+            background: none !important;
+            color: var(--nav-text, var(--text-light)) !important;
+            touch-action: manipulation !important;
+            -webkit-tap-highlight-color: transparent !important;
+          }
+
+          html[data-zappy-site-type="ecommerce"] .phone-header-btn,
+          body[data-zappy-site-type="ecommerce"] .phone-header-btn,
+          html[data-zappy-site-type="ecommerce"] header .phone-header-btn,
+          html[data-zappy-site-type="ecommerce"] nav .phone-header-btn {
+            display: none !important;
+            visibility: hidden !important;
+            width: 0 !important;
+            height: 0 !important;
+            min-width: 0 !important;
+            overflow: hidden !important;
+          }
+          
+          /* LTR positioning (default): hamburger LEFT, phone RIGHT */
+          html:not([dir="rtl"]):not([lang="he"]):not([lang="ar"]) .mobile-toggle,
+          html[dir="ltr"] .mobile-toggle {
+            left: 12px !important;
+            right: auto !important;
+          }
+          html:not([dir="rtl"]):not([lang="he"]):not([lang="ar"]) .phone-header-btn,
+          html[dir="ltr"] .phone-header-btn {
+            right: 12px !important;
+            left: auto !important;
+          }
+          
+          /* RTL positioning: hamburger RIGHT, phone LEFT */
+          html[dir="rtl"] .mobile-toggle,
+          html[lang="he"] .mobile-toggle,
+          html[lang="ar"] .mobile-toggle {
+            right: 12px !important;
+            left: auto !important;
+          }
+          html[dir="rtl"] .phone-header-btn,
+          html[lang="he"] .phone-header-btn,
+          html[lang="ar"] .phone-header-btn {
+            left: 12px !important;
+            right: auto !important;
+          }
+          
+          /* CRITICAL: Ensure nav-container has min-height on mobile */
+          /* All children are positioned absolutely/fixed on mobile, so height:auto collapses to 0 */
+          .nav-container {
+            min-height: 70px !important;
+            position: relative !important;
+          }
+          
+          /* Ensure SVG icons are properly sized and inherit color */
+          .mobile-toggle svg,
+          .phone-header-btn svg {
+            width: 24px !important;
+            height: 24px !important;
+            /* Don't force display - let JavaScript control hamburger/close toggle */
+          }
+          
+          /* Reset nav-cta-container on mobile - remove desktop box-shadow/padding */
+          /* that creates a visible ghost box when CTA button is hidden */
+          .nav-cta-container {
+            box-shadow: none !important;
+            padding: 0 !important;
+          }
+          
+          /* Hide nav-cta-container entirely on mobile when there's no lang-switcher */
+          /* (only the CTA button is inside, and it's hidden on mobile) */
+          .nav-cta-container:not(:has(.lang-switcher)) {
+            display: none !important;
+          }
+          
+          /* CRITICAL: Prevent hero image fade gradient from bleeding over headline text */
+          /* The .image-fade-gradient has bottom: -30px (extends below parent) */
+          /* On mobile stacked layout, this overlaps the h1 text below the image */
+          .hero-image-column {
+            overflow: hidden !important;
+          }
+          .image-fade-gradient {
+            bottom: 0 !important;
+          }
+          
+          /* Hide desktop language switcher on mobile - hamburger menu handles it */
+          /* High specificity to override stored CSS */
+          .lang-switcher,
+          .nav-cta-container .lang-switcher,
+          .nav-container .lang-switcher,
+          .navbar .lang-switcher,
+          .navbar .nav-cta-container .lang-switcher {
+            display: none !important;
+          }
+        }
+      `;
+      
+      // Remove existing fix if present and inject new one
+      const existing = document.getElementById('zappy-mobile-nav-fix');
+      if (existing) existing.remove();
+      document.head.appendChild(criticalCSS);
+      
+      console.log('[Navbar] Critical CSS injected for mobile nav positioning');
+      
+      // ONLY apply inline positioning styles on mobile viewport
+      // On desktop, the CSS handles hiding these buttons with display: none
+      // Inline styles were breaking desktop layout by overriding CSS
+      const isMobileViewport = window.innerWidth <= 768;
+      
+      if (mobileToggle) {
+        // Icon sizing applies to all viewports for consistency
+        const hamburgerIcon = mobileToggle.querySelector('.hamburger-icon');
+        const closeIcon = mobileToggle.querySelector('.close-icon');
+        
+        if (hamburgerIcon) {
+          hamburgerIcon.style.setProperty('width', '24px', 'important');
+          hamburgerIcon.style.setProperty('height', '24px', 'important');
+          hamburgerIcon.style.setProperty('display', 'block', 'important'); // Show hamburger by default
+        }
+        if (closeIcon) {
+          closeIcon.style.setProperty('width', '24px', 'important');
+          closeIcon.style.setProperty('height', '24px', 'important');
+          closeIcon.style.setProperty('display', 'none', 'important'); // Hide close icon by default
+        }
+        
+        // ONLY set positioning inline styles on mobile
+        if (isMobileViewport) {
+          mobileToggle.style.setProperty('position', 'absolute', 'important');
+          mobileToggle.style.setProperty('top', '0', 'important');
+          mobileToggle.style.setProperty('bottom', '0', 'important');
+          mobileToggle.style.setProperty('margin-top', 'auto', 'important');
+          mobileToggle.style.setProperty('margin-bottom', 'auto', 'important');
+          mobileToggle.style.setProperty('transform', 'none', 'important');
+          mobileToggle.style.setProperty('z-index', '1001', 'important');
+          
+          // Clear any inline left/right so CSS can take over based on html[dir]
+          mobileToggle.style.removeProperty('left');
+          mobileToggle.style.removeProperty('right');
+          
+          console.log('[Navbar] Mobile toggle positioning applied (mobile viewport)');
+        } else {
+          // On desktop, clear any positioning styles to let CSS handle it
+          mobileToggle.style.removeProperty('position');
+          mobileToggle.style.removeProperty('top');
+          mobileToggle.style.removeProperty('transform');
+          mobileToggle.style.removeProperty('z-index');
+          mobileToggle.style.removeProperty('left');
+          mobileToggle.style.removeProperty('right');
+          console.log('[Navbar] Desktop viewport - cleared mobile toggle inline positioning');
+        }
+      }
+      
+      if (phoneBtn) {
+        // Icon sizing applies to all viewports
+        const phoneIcon = phoneBtn.querySelector('svg');
+        if (phoneIcon) {
+          phoneIcon.style.width = '24px';
+          phoneIcon.style.height = '24px';
+          phoneIcon.setAttribute('width', '24');
+          phoneIcon.setAttribute('height', '24');
+        }
+        
+        // ONLY set positioning inline styles on mobile
+        if (isMobileViewport) {
+          phoneBtn.style.setProperty('position', 'absolute', 'important');
+          phoneBtn.style.setProperty('top', '0', 'important');
+          phoneBtn.style.setProperty('bottom', '0', 'important');
+          phoneBtn.style.setProperty('margin-top', 'auto', 'important');
+          phoneBtn.style.setProperty('margin-bottom', 'auto', 'important');
+          phoneBtn.style.setProperty('transform', 'none', 'important');
+          phoneBtn.style.setProperty('z-index', '1001', 'important');
+          
+          // Clear any inline left/right so CSS can take over based on html[dir]
+          phoneBtn.style.removeProperty('left');
+          phoneBtn.style.removeProperty('right');
+          
+          console.log('[Navbar] Phone button positioning applied (mobile viewport)');
+        } else {
+          // On desktop, clear any positioning styles to let CSS handle it
+          phoneBtn.style.removeProperty('position');
+          phoneBtn.style.removeProperty('top');
+          phoneBtn.style.removeProperty('transform');
+          phoneBtn.style.removeProperty('z-index');
+          phoneBtn.style.removeProperty('left');
+          phoneBtn.style.removeProperty('right');
+          console.log('[Navbar] Desktop viewport - cleared phone button inline positioning');
+        }
+      }
+    } else {
+      console.log('[Navbar] Could not parse background color:', bgColor);
+    }
+    
+    // MOBILE MENU TOGGLE
+    // Re-query in case DOM changed (mobileToggle already declared at top of function)
+    mobileToggle = document.getElementById('mobileToggle') ||
+                   document.querySelector('.mobile-toggle') ||
+                   document.querySelector('.hamburger') ||
+                   document.querySelector('.hamburger-menu') ||
+                   document.querySelector('.menu-toggle') ||
+                   document.querySelector('.burger-menu') ||
+                   document.querySelector('[aria-label="Menu"]') ||
+                   document.querySelector('[aria-label="תפריט"]');
+    
+    // EXPANDED SEARCH: Find nav menu by ID or class
+    const navMenu = document.getElementById('navMenu') ||
+                  document.querySelector('.nav-menu') ||
+                  document.querySelector('.nav-links') ||
+                  document.querySelector('nav ul:not(.submenu)');
+    
+    if (!mobileToggle || !navMenu) {
+      console.log('[Navbar] Mobile toggle or menu not found:', { toggle: !!mobileToggle, menu: !!navMenu });
+      return;
+    }
+    
+    // Ensure navMenu has ID for CSS targeting
+    if (!navMenu.id) {
+      navMenu.id = 'navMenu';
+    }
+    
+    console.log('[Navbar] Initializing mobile menu...');
+    
+    // Remove any existing event listeners by cloning the button
+    const newToggle = mobileToggle.cloneNode(true);
+    mobileToggle.parentNode.replaceChild(newToggle, mobileToggle);
+    
+    // Toggle menu handler (shared by click and touchend)
+    function handleToggle(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const hamburgerIcon = newToggle.querySelector('.hamburger-icon');
+      const closeIcon = newToggle.querySelector('.close-icon');
+      const isActive = navMenu.classList.contains('active');
+      
+      if (isActive) {
+        // Close menu
+        navMenu.classList.remove('active');
+        if (hamburgerIcon) hamburgerIcon.style.setProperty('display', 'block', 'important');
+        if (closeIcon) closeIcon.style.setProperty('display', 'none', 'important');
+        document.body.style.overflow = '';
+        document.body.classList.remove('menu-open');
+        console.log('[Navbar] Menu closed');
+      } else {
+        // Open menu
+        navMenu.classList.add('active');
+        if (hamburgerIcon) hamburgerIcon.style.setProperty('display', 'none', 'important');
+        if (closeIcon) closeIcon.style.setProperty('display', 'block', 'important');
+        document.body.style.overflow = 'hidden';
+        document.body.classList.add('menu-open');
+        console.log('[Navbar] Menu opened');
+      }
+    }
+    
+    // Use click for desktop/emulation and touchend as iOS Safari fallback.
+    // Prevent double-fire with a timestamp guard.
+    var lastToggleTime = 0;
+    function guardedToggle(e) {
+      var now = Date.now();
+      if (now - lastToggleTime < 300) return;
+      lastToggleTime = now;
+      handleToggle(e);
+    }
+    
+    newToggle.addEventListener('click', guardedToggle);
+    newToggle.addEventListener('touchend', guardedToggle);
+
+    // Close the full-screen overlay menu on Escape
+    document.addEventListener('keydown', function(e) {
+      if ((e.key === 'Escape' || e.key === 'Esc') && navMenu.classList.contains('active')) {
+        const hamburgerIcon = newToggle.querySelector('.hamburger-icon');
+        const closeIcon = newToggle.querySelector('.close-icon');
+        navMenu.classList.remove('active');
+        if (hamburgerIcon) hamburgerIcon.style.setProperty('display', 'block', 'important');
+        if (closeIcon) closeIcon.style.setProperty('display', 'none', 'important');
+        document.body.style.overflow = '';
+        document.body.classList.remove('menu-open');
+        console.log('[Navbar] Menu closed (Escape)');
+      }
+    });
+    
+    // Close menu when clicking nav links (but NOT dropdown toggles)
+    const navLinks = navMenu.querySelectorAll('a');
+    navLinks.forEach(function(link) {
+      link.addEventListener('click', function() {
+        // Don't close if it's a dropdown child (unless it's a real navigation link)
+        if (this.getAttribute('href') === '#') return;
+        
+        const hamburgerIcon = newToggle.querySelector('.hamburger-icon');
+        const closeIcon = newToggle.querySelector('.close-icon');
+        
+        navMenu.classList.remove('active');
+        if (hamburgerIcon) hamburgerIcon.style.setProperty('display', 'block', 'important');
+        if (closeIcon) closeIcon.style.setProperty('display', 'none', 'important');
+        document.body.style.overflow = '';
+        document.body.classList.remove('menu-open');
+        console.log('[Navbar] Menu closed (link clicked)');
+      });
+    });
+    
+    // DROPDOWN MENU TOGGLE (for mobile and touch devices)
+    var dropdownToggles = navMenu.querySelectorAll('.dropdown-toggle');
+    dropdownToggles.forEach(function(toggle) {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var parent = this.closest('.nav-dropdown');
+        if (!parent) return;
+        
+        // Close other open dropdowns at the same level
+        var siblings = parent.parentNode.querySelectorAll('.nav-dropdown.open');
+        siblings.forEach(function(sib) {
+          if (sib !== parent) sib.classList.remove('open');
+        });
+        
+        parent.classList.toggle('open');
+        console.log('[Navbar] Dropdown toggled:', parent.classList.contains('open') ? 'open' : 'closed');
+      });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.nav-dropdown')) {
+        var openDropdowns = document.querySelectorAll('.nav-dropdown.open');
+        openDropdowns.forEach(function(dd) { dd.classList.remove('open'); });
+      }
+    });
+    
+    console.log('[Navbar] Dropdown handlers initialized for ' + dropdownToggles.length + ' dropdowns');
+    
+    // Phone button functionality (phoneBtn already declared at top of function)
+    if (phoneBtn) {
+      phoneBtn.addEventListener('click', function() {
+        // Get phone number from placeholder in page or use default
+        const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+        const phoneNumber = phoneLinks.length > 0 
+          ? phoneLinks[0].getAttribute('href').replace('tel:', '')
+          : '[business_phone]';
+        
+        window.location.href = 'tel:' + phoneNumber;
+        console.log('[Navbar] Phone button clicked');
+      });
+    }
+    
+    console.log('[Navbar] Mobile menu initialized successfully');
+    
+    // WhatsApp button visibility is now controlled via CSS (siteSettings).
+    // No JS-based desktop hiding — the button is visible on both mobile and desktop by default.
+  });
+})();
+
+</script>
+  
+  <main id="main">
+    <section class="about-brand-intro-section" data-layout-spec="אודות-brand-intro">
+  <div class="about-brand-intro-section__container">
+    <div class="about-brand-intro-section__grid">
+      <!-- Text Content -->
+      <div class="about-brand-intro-section__text">
+        <h1 class="about-brand-intro-section__h1">
+          LOLLIPOP
+        </h1>
+        <h2 class="about-brand-intro-section__h2">
+          אירוע בלתי נשכח מתחיל כאן
+        </h2>
+        <p class="about-brand-intro-section__p">
+          ב-<strong>LOLLIPOP</strong> אנחנו הופכים כל חגיגה לעולם קסום של צבע, צחוק ואנרגיה. אנחנו מתמחים בהפקת אירועי ילדים, ימי הולדת ואירועים משפחתיים, עם מגוון ענק של מתנפחי קפיצה, מתנפחי תפאורה, דוכני מזון וביתני משחק. הצוות שלנו דואג לכל פרט – מהתכנון ועד לפירוק – כדי שאתם תוכלו פשוט ליהנות מהרגעים היפים.
+        </p>
+        <p class="about-brand-intro-section__p">
+          עם ניסיון של שנים בהפקת אירועים, אנחנו מביאים אמינות, בטיחות ויצירתיות שאין שנייה לה. כל אירוע מקבל יחס אישי, והמטרה שלנו היא אחת: לראות את החיוך הגדול על הפנים של הילדים – ושלכם.
+        </p>
+        <div class="about-brand-intro-section__actions">
+          <a href="/contact" class="about-brand-intro-section__btn about-brand-intro-section__btn--primary">צרו קשר</a>
+          <a href="/services" class="about-brand-intro-section__btn about-brand-intro-section__btn--ghost">לשירותים שלנו</a>
+        </div>
+      </div>
+
+      <!-- Image with Decorative Backplate -->
+      <div class="about-brand-intro-section__media">
+        <div class="about-brand-intro-section__media-wrapper">
+          <div class="about-brand-intro-section__image-backplate" aria-hidden="true"></div>
+          <div class="about-brand-intro-section__image-frame">
+            <img loading="eager" fetchpriority="high" data-placeholder="about-brand-intro-image-1" data-context="A warm, joyful photo of the LOLLIPOP entertainment team at a colorful children's event, surrounded by bright inflatable castles and game booths, with kids laughing and playing in the background. The image should feel family-friendly, energetic, and trustworthy." width="600" height="400" src="/assets/site-about-brand-intro-image-1.webp" alt="צוות LOLLIPOP באירוע ילדים צבעוני" class="about-brand-intro-section__image">
+          </div>
+          <!-- Decorative Inflatable Motifs -->
+          <div class="about-brand-intro-section__deco about-brand-intro-section__deco--balloon" aria-hidden="true">
+            <svg data-element-type="icon" data-icon-type="svg" viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 10 C 65 10 70 45 65 65 C 60 85 50 95 40 95 C 30 95 20 85 15 65 C 10 45 15 10 40 10 Z" fill="#7B2FBE" opacity="0.9"/>
+              <path d="M40 95 Q 35 110 25 115" stroke="#7B2FBE" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.9"/>
+              <ellipse cx="30" cy="25" rx="10" ry="15" fill="white" opacity="0.3" transform="rotate(-30 30 25)"/>
+            </svg>
+          </div>
+          <div class="about-brand-intro-section__deco about-brand-intro-section__deco--star" aria-hidden="true">
+            <svg data-element-type="icon" data-icon-type="svg" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M45 5 L55 35 L85 35 L60 55 L70 85 L45 65 L20 85 L30 55 L5 35 L35 35 Z" fill="#00D4B8" stroke="#00D4B8" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Wave Divider -->
+  <div class="about-brand-intro-section__divider-wrapper" aria-hidden="true">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,80 L0,40 Q150,60 300,40 T600,40 Q750,60 900,40 T1200,40 L1200,80 Z" fill="#1A0A2E"/>
+    </svg>
+  </div>
+</section>
+
+<section class="about-values-section" data-layout-spec="אודות-values">
+  <div class="about-values-section__container">
+    <h2 class="about-values-section__heading">הערכים שמנפחים לנו את הלב</h2>
+    <p class="about-values-section__subtitle">בלוליפופ כל אירוע הוא עולם ומלואו. אנחנו מביאים אתנו ארבעה עקרונות יסוד שהופכים כל הפקה לחוויה בלתי נשכחת.</p>
+    
+    <div class="about-values-section__orbit">
+      <!-- Card 1: Joy -->
+      <div class="about-values-section__card about-values-section__card--joy">
+        <div class="about-values-section__card-icon">
+          <svg data-element-type="icon" data-icon-type="svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="2"/>
+            <path d="M16 20C16 20 18 16 24 16C30 16 32 20 32 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M16 30C16 30 20 34 24 34C28 34 32 30 32 30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="18" cy="24" r="2" fill="currentColor"/>
+            <circle cx="30" cy="24" r="2" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3 class="about-values-section__card-title">שמחה</h3>
+        <p class="about-values-section__card-text">אנחנו מאמינים שצחוק מתגלגל הוא הפסקול של כל מסיבה מוצלחת. כל מתנפח, דוכן ומשחק שלנו נועד להצית ניצוץ בעיניים ולייצר רגעים של אושר צרוף.</p>
+      </div>
+
+      <!-- Card 2: Safety -->
+      <div class="about-values-section__card about-values-section__card--safety">
+        <div class="about-values-section__card-icon">
+          <svg data-element-type="icon" data-icon-type="svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 4L6 12V26C6 34.5 13.5 42.5 24 45C34.5 42.5 42 34.5 42 26V12L24 4Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M18 24L22 28L30 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="about-values-section__card-title">בטיחות</h3>
+        <p class="about-values-section__card-text">הראש שלנו תמיד בשמיים, אבל הרגליים נטועות עמוק בקרקע. הציוד שלנו עומד בתקנים המחמירים ביותר, הצוות מיומן ומקצועי, והשקט הנפשי שלכם הוא בראש סדר העדיפויות.</p>
+      </div>
+
+      <!-- Card 3: Creativity -->
+      <div class="about-values-section__card about-values-section__card--creativity">
+        <div class="about-values-section__card-icon">
+          <svg data-element-type="icon" data-icon-type="svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 4V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M24 34V44" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 24H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M34 24H44" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="2"/>
+            <path d="M24 16V20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M24 28V32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M16 24H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M28 24H32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="about-values-section__card-title">יצירתיות</h3>
+        <p class="about-values-section__card-text">כל אירוע הוא קנבס ריק. אנחנו אוהבים לחשוב מחוץ לקופסה — או במקרה שלנו, מחוץ למתנפח — ולהפוך חלומות פרועים למציאות צבעונית, מקורית ומלאת דמיון.</p>
+      </div>
+
+      <!-- Card 4: Responsibility -->
+      <div class="about-values-section__card about-values-section__card--responsibility">
+        <div class="about-values-section__card-icon">
+          <svg data-element-type="icon" data-icon-type="svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 44V34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M16 34H32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M14 14L24 4L34 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 14V24C14 29.5 18.5 34 24 34C29.5 34 34 29.5 34 24V14" stroke="currentColor" stroke-width="2"/>
+            <circle cx="24" cy="22" r="3" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3 class="about-values-section__card-title">אחריות</h3>
+        <p class="about-values-section__card-text">מהרגע הראשון ועד לפירוק האחרון, אנחנו לוקחים אחריות מלאה על ההפקה. דייקנות, שקיפות ושירות ללא פשרות — כדי שאתם תוכלו פשוט לשבת, לנשוף וליהנות מהחגיגה.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative Balloon Element -->
+  <div class="about-values-section__decor about-values-section__decor--balloon" aria-hidden="true">
+    <svg viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M60 20 C90 20 110 50 110 80 C110 120 90 150 60 160 C30 150 10 120 10 80 C10 50 30 20 60 20Z" fill="#FFB3D9" opacity="0.4"/>
+      <path d="M55 160 Q55 180 50 195" stroke="#FFB3D9" stroke-width="3" opacity="0.4"/>
+      <ellipse cx="60" cy="50" rx="15" ry="8" fill="white" opacity="0.3" transform="rotate(-15 60 50)"/>
+    </svg>
+  </div>
+
+  <!-- Decorative Star Element -->
+  <div class="about-values-section__decor about-values-section__decor--star" aria-hidden="true">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 10 L62 35 L90 38 L68 57 L74 85 L50 72 L26 85 L32 57 L10 38 L38 35 Z" fill="#00D4B8" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- Bottom Divider: Mint-to-White Gradient Fade -->
+  <div class="about-values-section__divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="about-values-divider-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#00D4B8" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#FFF8FC" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <path d="M0,80 L0,20 Q150,15 300,25 T600,18 Q750,28 900,20 T1200,25 L1200,80 Z" fill="#FFF0F8"/>
+    </svg>
+  </div>
+</section>
+
+<section class="about-safety-section" data-layout-spec="אודות-safety">
+  <div class="about-safety-section__container">
+    <!-- Content Column (Right/Start) -->
+    <div class="about-safety-section__content">
+      <span class="about-safety-section__badge">בטיחות קודם כל</span>
+      <h2 class="about-safety-section__heading">הבטיחות של הילדים היא בעדיפות עליונה</h2>
+      <p class="about-safety-section__description">בלוליפופ, אנחנו מאמינים שחגיגה שמחה מתחילה בבטיחות מוחלטת. כל המתנפחים והמתקנים שלנו עומדים בתקנים המחמירים ביותר, מתוחזקים בקפידה ונבדקים לפני כל אירוע. הצוות המקצועי שלנו דואג להתקנה מאובטחת וליווי צמוד לאורך כל האירוע, כדי שהילדים יוכלו לקפוץ, לשחק וליהנות – ואתם תוכלו להיות רגועים.</p>
+      <ul class="about-safety-section__list">
+        <li class="about-safety-section__list-item">
+          <span class="about-safety-section__list-icon">✓</span>
+          <span>צוות מתקינים מוסמך ובעל ניסיון</span>
+        </li>
+        <li class="about-safety-section__list-item">
+          <span class="about-safety-section__list-icon">✓</span>
+          <span>ציוד חדיש העומד בתו תקן ישראלי</span>
+        </li>
+        <li class="about-safety-section__list-item">
+          <span class="about-safety-section__list-icon">✓</span>
+          <span>ביטוח צד ג' מקיף לכל תרחיש</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Cards Column (Left/End) -->
+    <div class="about-safety-section__cards">
+      <article class="about-safety-section__card">
+        <div class="about-safety-section__card-icon-wrapper">
+          <svg class="about-safety-section__card-icon" data-element-type="icon" data-icon-type="svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="22" fill="#FFF0F8" stroke="#E91E8C" stroke-width="2"/>
+            <path d="M16 24L22 30L32 18" stroke="#E91E8C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="about-safety-section__card-title">התאמה מדויקת לגיל</h3>
+        <p class="about-safety-section__card-text">אנו מתאימים את סוג וגובה המתקנים לכל קבוצת גיל, מילדים קטנים ועד בני נוער, כדי להבטיח חוויית משחק בטוחה ומהנה במיוחד.</p>
+      </article>
+
+      <article class="about-safety-section__card">
+        <div class="about-safety-section__card-icon-wrapper">
+          <svg class="about-safety-section__card-icon" data-element-type="icon" data-icon-type="svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="22" fill="#FFF0F8" stroke="#E91E8C" stroke-width="2"/>
+            <rect x="16" y="14" width="16" height="20" rx="3" stroke="#E91E8C" stroke-width="2.5"/>
+            <path d="M20 14V12C20 10.8954 20.8954 10 22 10H26C27.1046 10 28 10.8954 28 12V14" stroke="#E91E8C" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="24" cy="27" r="3" fill="#E91E8C"/>
+            <path d="M24 30V35" stroke="#E91E8C" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="about-safety-section__card-title">התקנה מסודרת ומאובטחת</h3>
+        <p class="about-safety-section__card-text">צוות לוליפופ מגיע לפני האירוע, דואג לעיגון קרקע חזק, ניפוח תקין ובדיקת יציבות מלאה של כל מתנפח וביתן משחק.</p>
+      </article>
+
+      <article class="about-safety-section__card">
+        <div class="about-safety-section__card-icon-wrapper">
+          <svg class="about-safety-section__card-icon" data-element-type="icon" data-icon-type="svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="22" fill="#FFF0F8" stroke="#E91E8C" stroke-width="2"/>
+            <path d="M24 12V14" stroke="#E91E8C" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M24 34V36" stroke="#E91E8C" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M12 24H14" stroke="#E91E8C" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M34 24H36" stroke="#E91E8C" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="24" cy="24" r="8" stroke="#E91E8C" stroke-width="2.5"/>
+            <circle cx="24" cy="24" r="3" fill="#E91E8C"/>
+          </svg>
+        </div>
+        <h3 class="about-safety-section__card-title">ציוד נקי ומתוחזק</h3>
+        <p class="about-safety-section__card-text">אנו מקפידים על ניקיון יסודי וחיטוי של כלל המתקנים לאחר כל שימוש, לצד תחזוקה שוטפת ובדיקות תקופתיות למניעת תקלות.</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- Decorative Balloon Tube (Left side) -->
+  <div class="about-safety-section__decoration" aria-hidden="true">
+    <svg viewBox="0 0 120 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M60 400 C60 350, 100 320, 100 270 C100 220, 60 200, 60 150 C60 100, 100 80, 100 30 C100 -10, 60 -20, 60 -50" stroke="#7B2FBE" stroke-width="24" stroke-linecap="round" fill="none" opacity="0.9"/>
+      <path d="M60 400 C60 350, 100 320, 100 270 C100 220, 60 200, 60 150 C60 100, 100 80, 100 30 C100 -10, 60 -20, 60 -50" stroke="#9B4FDE" stroke-width="16" stroke-linecap="round" fill="none" opacity="0.6"/>
+      <circle cx="60" cy="270" r="6" fill="#FFFFFF" opacity="0.8"/>
+      <circle cx="60" cy="150" r="6" fill="#FFFFFF" opacity="0.8"/>
+    </svg>
+  </div>
+
+  <!-- Bottom Divider: Coral Curved Tube -->
+  <div class="about-safety-section__divider-wrapper" data-no-icon-edit="true" aria-hidden="true">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,80 L0,40 Q150,20 300,45 T600,35 Q750,50 900,30 T1200,45 L1200,80 Z" fill="#FFF0F8"/>
+      <path d="M0,80 L0,45 Q150,25 300,50 T600,40 Q750,55 900,35 T1200,50 L1200,80 Z" fill="#FFF0F8" opacity="0.15"/>
+    </svg>
+  </div>
+</section>
+
+<section class="about-audiences-section" data-layout-spec="אודות-audiences">
+  <div class="about-audiences-container">
+    <div class="about-audiences-header">
+      <h2 class="about-audiences-title">הקהלים שלנו</h2>
+      <p class="about-audiences-subtitle">לוליפופ מביאה את הקסם לכל סוגי האירועים – מימי הולדת פרטיים ועד הפקות ענק. כל לקוח מקבל חוויה מותאמת אישית, צבעונית ובלתי נשכחת.</p>
+    </div>
+    <div class="about-audiences-grid">
+      <!-- Tile 1: Families -->
+      <div class="about-audiences-tile">
+        <div class="about-audiences-tile-icon-wrap">
+          <svg class="about-audiences-tile-icon" data-element-type="icon" data-icon-type="svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" fill="#FFE0EC" stroke="#FFB3D9" stroke-width="2"/>
+            <path d="M20 38C20 38 24 44 32 44C40 44 44 38 44 38" stroke="#FF6B5A" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="24" cy="28" r="3" fill="#7C3AED"/>
+            <circle cx="40" cy="28" r="3" fill="#7C3AED"/>
+            <path d="M18 22C18 22 22 16 32 16C42 16 46 22 46 22" stroke="#FF6B5A" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="about-audiences-tile-title">משפחות עם ילדים</h3>
+        <p class="about-audiences-tile-desc">מתנפחי קפיצה, דוכני מזון מתוקים וביתני משחק צבעוניים שהופכים כל חצר לפארק שעשועים פרטי. אנחנו דואגים שההורים יוכלו לשבת בנחת בזמן שהילדים קופצים מרוב אושר.</p>
+        <img data-placeholder="about-audiences-image-1" data-context="A happy Israeli family with two young children playing on colorful inflatable bouncy castles in a sunny backyard, balloons and party decorations visible, candid joyful moment" width="600" height="400" src="/assets/site-about-audiences-image-1.webp" alt="משפחה עם ילדים נהנית במתנפחים" class="about-audiences-tile-img" loading="lazy">
+      </div>
+      <!-- Tile 2: Birthday Organizers -->
+      <div class="about-audiences-tile">
+        <div class="about-audiences-tile-icon-wrap">
+          <svg class="about-audiences-tile-icon" data-element-type="icon" data-icon-type="svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" fill="#FFF0F8" stroke="#FFB3D9" stroke-width="2"/>
+            <path d="M32 14V20" stroke="#7C3AED" stroke-width="3" stroke-linecap="round"/>
+            <path d="M22 24L26 28" stroke="#FF6B5A" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M42 24L38 28" stroke="#FF6B5A" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="22" y="28" width="20" height="18" rx="4" fill="#FFE0EC" stroke="#FFB3D9" stroke-width="2"/>
+            <path d="M28 46V50" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M36 46V50" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="32" cy="36" r="3" fill="#FF6B5A"/>
+          </svg>
+        </div>
+        <h3 class="about-audiences-tile-title">מארגני ימי הולדת</h3>
+        <p class="about-audiences-tile-desc">אנחנו השותף המושלם למפיקי אירועים פרטיים. מתנפחי תפאורה מעוצבים, עמדות משחק אינטראקטיביות וקונספטים מתוקים שהופכים כל יום הולדת להפקה בלתי נשכחת – הכול תחת קורת גג אחת.</p>
+        <img data-placeholder="about-audiences-image-2" data-context="A professional birthday party organizer in Israel holding a clipboard, standing next to an elaborate inflatable decoration setup with themed backdrops, candy-colored balloons and party props around" width="600" height="400" src="/assets/site-about-audiences-image-2.webp" alt="מארגנת ימי הולדת ליד מתנפחי תפאורה" class="about-audiences-tile-img" loading="lazy">
+      </div>
+      <!-- Tile 3: Schools -->
+      <div class="about-audiences-tile">
+        <div class="about-audiences-tile-icon-wrap">
+          <svg class="about-audiences-tile-icon" data-element-type="icon" data-icon-type="svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" fill="#F5F0FF" stroke="#D4C4F0" stroke-width="2"/>
+            <rect x="18" y="22" width="28" height="22" rx="3" fill="#FFF" stroke="#7C3AED" stroke-width="2"/>
+            <path d="M22 30H42" stroke="#FF6B5A" stroke-width="2" stroke-linecap="round"/>
+            <path d="M22 36H36" stroke="#FF6B5A" stroke-width="2" stroke-linecap="round"/>
+            <path d="M28 14L32 10L36 14" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="about-audiences-tile-title">בתי ספר וגני ילדים</h3>
+        <p class="about-audiences-tile-desc">ימי ספורט, מסיבות סוף שנה והפנינג קהילתי – אנחנו מגיעים עם הציוד הכי בטיחותי, הכי צבעוני והכי כיפי. מתנפחים ענקיים שמתאימים לעשרות ילדים בו זמנית, עם דגש על בטיחות ופיקוח צמוד.</p>
+        <img data-placeholder="about-audiences-image-3" data-context="Israeli elementary school children in uniform playing together on large inflatable obstacle courses in a schoolyard, teachers supervising with smiles, colorful bounce houses in background, bright sunny day" width="600" height="400" src="/assets/site-about-audiences-image-3.webp" alt="ילדי בית ספר במתנפחים בחצר" class="about-audiences-tile-img" loading="lazy">
+      </div>
+      <!-- Tile 4: Family Event Producers -->
+      <div class="about-audiences-tile">
+        <div class="about-audiences-tile-icon-wrap">
+          <svg class="about-audiences-tile-icon" data-element-type="icon" data-icon-type="svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" fill="#FFF0F8" stroke="#FFB3D9" stroke-width="2"/>
+            <rect x="20" y="20" width="24" height="18" rx="3" fill="#FFE0EC" stroke="#FF6B5A" stroke-width="2"/>
+            <path d="M20 38L16 48H48L44 38" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="28" cy="28" r="2" fill="#7C3AED"/>
+            <circle cx="36" cy="28" r="2" fill="#7C3AED"/>
+            <path d="M28 32H36" stroke="#FF6B5A" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="about-audiences-tile-title">מפיקי אירועים משפחתיים</h3>
+        <p class="about-audiences-tile-desc">חתונות, בר מצוות, אירועי גיבוש קהילתיים – אנחנו מספקים פתרונות בידור מלאים: דוכני מזון מתוקים, מתנפחי תפאורה מרהיבים ועמדות משחק שמתאימות לכל הגילאים. הכול מתוקתק עד הפרט האחרון.</p>
+        <img data-placeholder="about-audiences-image-4" data-context="An Israeli family event producer coordinating a large outdoor celebration with inflatable decorations, candy food stalls, and families mingling, professional event setup visible, warm evening lighting" width="600" height="400" src="/assets/site-about-audiences-image-4.webp" alt="מפיק אירועים משפחתיים עם מתנפחי תפאורה" class="about-audiences-tile-img" loading="lazy">
+      </div>
+      <!-- Tile 5: Corporate Event Teams -->
+      <div class="about-audiences-tile">
+        <div class="about-audiences-tile-icon-wrap">
+          <svg class="about-audiences-tile-icon" data-element-type="icon" data-icon-type="svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" fill="#F5F0FF" stroke="#D4C4F0" stroke-width="2"/>
+            <rect x="16" y="26" width="12" height="8" rx="2" fill="#FFF" stroke="#7C3AED" stroke-width="2"/>
+            <rect x="36" y="26" width="12" height="8" rx="2" fill="#FFF" stroke="#7C3AED" stroke-width="2"/>
+            <rect x="26" y="34" width="12" height="8" rx="2" fill="#FFF" stroke="#FF6B5A" stroke-width="2"/>
+            <path d="M22 22V18" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+            <path d="M32 22V18" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+            <path d="M42 22V18" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="about-audiences-tile-title">צוותי אירועים ארגוניים</h3>
+        <p class="about-audiences-tile-desc">ימי גיבוש, הפנינג לעובדים וירידי חברה – אנחנו מביאים את האנרגיה של לוליפופ גם לעולם העסקי. עמדות משחק תחרותיות, דוכני מזון ממותגים ומתנפחים חווייתיים שמייצרים אווירה של כיף וגיבוש.</p>
+        <img data-placeholder="about-audiences-image-5" data-context="Corporate team building event in Israel with employees enjoying inflatable game booths and food stalls, branded decorations, casual happy atmosphere, outdoor park setting" width="600" height="400" src="/assets/site-about-audiences-image-5.webp" alt="אירוע חברה עם עמדות משחק מתנפחות" class="about-audiences-tile-img" loading="lazy">
+      </div>
+      <!-- Tile 6: Children's Entertainment Suppliers -->
+      <div class="about-audiences-tile">
+        <div class="about-audiences-tile-icon-wrap">
+          <svg class="about-audiences-tile-icon" data-element-type="icon" data-icon-type="svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" fill="#FFE0EC" stroke="#FFB3D9" stroke-width="2"/>
+            <path d="M22 20H42L38 36H26L22 20Z" fill="#FFF" stroke="#FF6B5A" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M26 36V44" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M38 36V44" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M24 44H40" stroke="#FF6B5A" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="28" cy="28" r="2" fill="#7C3AED"/>
+            <circle cx="36" cy="28" r="2" fill="#7C3AED"/>
+          </svg>
+        </div>
+        <h3 class="about-audiences-tile-title">ספקי בידור לילדים</h3>
+        <p class="about-audiences-tile-desc">שותפים עסקיים שמחפשים להרחיב את ההיצע – אנחנו מספקים מתנפחים, דוכנים וציוד בידור בהשכרה לספקי שירות אחרים. ציוד איכותי, תחזוקה שוטפת וליווי מקצועי כדי שגם אתם תוכלו להפיק אירועים מושלמים.</p>
+        <img data-placeholder="about-audiences-image-6" data-context="An Israeli children entertainment supplier loading colorful inflatable equipment into a van, warehouse with various bounce houses and game booths visible, professional logistics scene, bright morning light" width="600" height="400" src="/assets/site-about-audiences-image-6.webp" alt="ספק בידור לילדים מעמיס ציוד מתנפחים" class="about-audiences-tile-img" loading="lazy">
+      </div>
+    </div>
+  </div>
+  <!-- Decorative floating orbs -->
+  <div class="about-audiences-orb about-audiences-orb--1" aria-hidden="true"></div>
+  <div class="about-audiences-orb about-audiences-orb--2" aria-hidden="true"></div>
+  <div class="about-audiences-orb about-audiences-orb--3" aria-hidden="true"></div>
+</section>
+  </main>
+  
+  <footer class="site-footer" dir="rtl">
+  <div class="footer-container">
+    <!-- Company Info -->
+    <div class="footer-col footer-company-col">
+      <img src="/assets/lollipop-event-entertainment-party-rentals-logo.webp" alt="LOLLIPOP" class="logo">
+      <p class="footer-tagline">הופכים כל אירוע לחוויה מתוקה ובלתי נשכחת עם ציוד שכור איכותי, הפקות צבעוניות ושירות אישי.</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-col footer-links-col">
+      <h4>ניווט מהיר</h4>
+      <ul class="footer-links">
+        <li><a href="/">בית</a></li>
+        <li><a href="/services">שירותים</a></li>
+        <li><a href="/event-production">הפקת אירועים</a></li>
+        <li><a href="/about">אודות</a></li>
+        <li><a href="/contact">צור קשר</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-col footer-contact-col">
+      <h4>צרו קשר</h4>
+      <ul class="footer-contact">
+        <li>
+          <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+          <span class="contact-text"><a href="mailto:[business_email]">[business_email]</a></span>
+        </li>
+        <li>
+          <span class="contact-icon"><i class="fas fa-phone"></i></span>
+          <span class="contact-text"><a href="tel:[business_phone]">[business_phone]</a></span>
+        </li>
+        <li><a href="/"><span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+          <span class="contact-text">[business_address]</span></a></li>
+      </ul>
+    </div>
+
+    <!-- Business Hours -->
+    <div class="footer-col footer-hours-col">
+      <h4>שעות פעילות</h4>
+      <ul class="footer-hours">
+        <li><a href="/"><span class="hours-day">ימים א'–ה'</span> <span class="hours-time">09:00–18:00</span></a></li>
+        <li><a href="/"><span class="hours-day">יום ו'</span> <span class="hours-time">09:00–13:00</span></a></li>
+        <li><a href="/"><span class="hours-day">שבת</span> <span class="hours-time">סגור</span></a></li>
+      </ul>
+    </div>
+
+    <!-- Social Media -->
+    <div class="footer-col footer-social-col">
+      <h4>עקבו אחרינו</h4>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook" data-zappy-social-placeholder="true"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram" data-zappy-social-placeholder="true"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="WhatsApp" data-zappy-social-placeholder="true"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-container">
+      <p class="footer-copyright">© 2026 LOLLIPOP. כל הזכויות שמורות.</p>
+      <div class="footer-legal">
+        <a href="/privacy">מדיניות פרטיות</a>
+        <a href="/terms">תנאי שימוש</a>
+        <a href="/accessibility">נגישות</a>
+        <a href="https://zappy5.com" target="_blank" class="zappy-attribution">נוצר באמצעות Zappy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+  <a href="https://wa.me/[whatsapp_handle]" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  
+  <div data-integration="accessibility:toolbar"></div>
+
+    <script src="/script.js"></script>
+
+    <script id="zappy-mobile-submenu-script">
+    (function() {
+      function initMobileSubmenuToggles() {
+        if (window.innerWidth > 768) {
+          document.querySelectorAll('.mobile-submenu-toggle').forEach(function(btn) { btn.remove(); });
+          document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) { menu.classList.remove('mobile-expanded'); });
+          return;
+        }
+        var items = document.querySelectorAll('.nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu)');
+        items.forEach(function(li) {
+          if (li.querySelector('.mobile-submenu-toggle')) return;
+          var submenu = li.querySelector('.sub-menu');
+          var parentLink = li.querySelector(':scope > a');
+          if (!submenu || !parentLink) return;
+          var toggleBtn = document.createElement('button');
+          toggleBtn.className = 'mobile-submenu-toggle';
+          toggleBtn.setAttribute('aria-label', 'Toggle submenu');
+          toggleBtn.setAttribute('type', 'button');
+          parentLink.insertAdjacentElement('afterend', toggleBtn);
+          toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault(); e.stopPropagation();
+            document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) {
+              if (menu !== submenu) { menu.classList.remove('mobile-expanded'); var t = menu.parentElement.querySelector('.mobile-submenu-toggle'); if(t) t.classList.remove('expanded'); }
+            });
+            submenu.classList.toggle('mobile-expanded');
+            toggleBtn.classList.toggle('expanded');
+          });
+        });
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initMobileSubmenuToggles); }
+      else { initMobileSubmenuToggles(); }
+      var resizeTimer; window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(initMobileSubmenuToggles, 250); });
+      // Re-initialize when mobile menu becomes visible (MutationObserver)
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes') {
+            var target = mutation.target;
+            if (target.classList && (target.classList.contains('active') || target.classList.contains('open'))) {
+              setTimeout(initMobileSubmenuToggles, 100);
+            }
+          }
+        });
+      });
+      setTimeout(function() {
+        document.querySelectorAll('.mobile-menu, .nav-menu, #navMenu, nav').forEach(function(menu) {
+          observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style'] });
+        });
+      }, 500);
+    })();
+    </script>
+
+    <script id="zappy-navbar-scroll-effect">
+    (function(){
+      var nb=document.querySelector('nav.navbar,.navbar:not(.zappy-catalog-menu)');
+      var cm=document.querySelector('.zappy-catalog-menu,#zappy-catalog-menu');
+      if(!nb)return;
+      var fb='rgba(255,248,252,0.85)';
+      var th=60;
+      var rs=getComputedStyle(document.documentElement);
+      var td=rs.getPropertyValue('--text-dark').trim()||'#1a1a1a';
+      var tl=rs.getPropertyValue('--text-light').trim()||'#ffffff';
+      var st=true?td:tl;
+      nb.style.transition='background 0.3s ease,backdrop-filter 0.3s ease,-webkit-backdrop-filter 0.3s ease,box-shadow 0.3s ease';
+      if(cm)cm.style.transition='background 0.3s ease,backdrop-filter 0.3s ease,-webkit-backdrop-filter 0.3s ease';
+      var neSel='a,.navbar-brand,.navbar-brand a,.dropdown-toggle,.mobile-toggle,.phone-header-btn,.mobile-hamburger-btn,.mobile-close-btn,.mobile-submenu-toggle,.nav-link';
+      var skipCls=['cart-link','login-link','nav-search-toggle','search-toggle'];
+      function sTC(c,clr){var els=c.querySelectorAll(neSel);for(var i=0;i<els.length;i++){var sk=false;if(els[i].closest('.sub-menu')||els[i].closest('.dropdown-menu')){sk=true;}for(var j=0;j<skipCls.length;j++){if(els[i].classList.contains(skipCls[j])){sk=true;break;}}if(!sk)els[i].style.setProperty('color',clr,'important');}}
+      function cTC(c){var els=c.querySelectorAll(neSel);for(var i=0;i<els.length;i++){if(els[i].closest('.sub-menu')||els[i].closest('.dropdown-menu'))continue;els[i].style.removeProperty('color');}}
+      function applyScrolled(){
+        nb.classList.add('scrolled');
+        if(window.innerWidth>768){
+          nb.style.setProperty('--frosted-text',st);
+          nb.style.setProperty('background-image','none','important');
+          nb.style.setProperty('background-color',fb,'important');
+          nb.style.backdropFilter='blur(12px)';nb.style.webkitBackdropFilter='blur(12px)';nb.style.boxShadow='0 2px 16px rgba(0,0,0,0.12)';
+          sTC(nb,st);
+        }
+        if(cm){cm.classList.add('scrolled');if(window.innerWidth>768){cm.style.setProperty('background',fb,'important');cm.style.setProperty('backdrop-filter','blur(12px)','important');cm.style.setProperty('-webkit-backdrop-filter','blur(12px)','important');sTC(cm,st);}}
+      }
+      function onS(){
+        if(window._zappyNavNoDarkHero) return;
+        if(window.innerWidth<=768){nb.classList.remove('scrolled');cTC(nb);if(cm){cm.classList.remove('scrolled');cTC(cm);}return;}
+        var y=window.scrollY||window.pageYOffset;
+        if(y>th){
+          nb.classList.add('scrolled');nb.style.setProperty('background-color',fb,'important');nb.style.setProperty('background-image','none','important');
+          nb.style.setProperty('--frosted-text',st);nb.style.backdropFilter='blur(12px)';nb.style.webkitBackdropFilter='blur(12px)';nb.style.boxShadow='0 2px 16px rgba(0,0,0,0.12)';
+          sTC(nb,st);
+          if(cm){cm.classList.add('scrolled');cm.style.setProperty('background',fb,'important');cm.style.setProperty('backdrop-filter','blur(12px)','important');cm.style.setProperty('-webkit-backdrop-filter','blur(12px)','important');sTC(cm,st);}
+        }else{
+          nb.classList.remove('scrolled');nb.style.setProperty('background-color','transparent','important');nb.style.removeProperty('background-image');
+          nb.style.removeProperty('--frosted-text');nb.style.backdropFilter='none';nb.style.webkitBackdropFilter='none';nb.style.boxShadow='none';
+          cTC(nb);
+          if(cm){cm.classList.remove('scrolled');cm.style.setProperty('background','transparent','important');cm.style.setProperty('backdrop-filter','none','important');cm.style.setProperty('-webkit-backdrop-filter','none','important');cTC(cm);}
+        }
+      }
+      function sLum(rv,gv,bv){rv/=255;gv/=255;bv/=255;rv=rv<=0.03928?rv/12.92:Math.pow((rv+0.055)/1.055,2.4);gv=gv<=0.03928?gv/12.92:Math.pow((gv+0.055)/1.055,2.4);bv=bv<=0.03928?bv/12.92:Math.pow((bv+0.055)/1.055,2.4);return 0.2126*rv+0.7152*gv+0.0722*bv;}
+      window.addEventListener('scroll',onS,{passive:true});
+      window.addEventListener('resize',onS,{passive:true});
+      onS();
+      var heroEl=document.querySelector('section[class*="hero"],[data-hero-type],main:not(.courses-page-main)>section:first-child');
+      var hasDH=false;
+      if(heroEl){var hCs=getComputedStyle(heroEl);var hBI=hCs.backgroundImage;if(hBI&&hBI!=='none'){if(hBI.indexOf('url(')!==-1){var hM2=hCs.backgroundColor.match(/\d+/g);if(hM2&&hM2.length>=3){hasDH=sLum(parseInt(hM2[0]),parseInt(hM2[1]),parseInt(hM2[2]))<0.4;}else{hasDH=true;}}else if(hBI.indexOf('gradient')!==-1){var cM=hBI.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/g);if(cM&&cM.length>0){var tLm=0;for(var ci=0;ci<cM.length;ci++){var pts=cM[ci].match(/\d+/g);tLm+=sLum(parseInt(pts[0]),parseInt(pts[1]),parseInt(pts[2]));}hasDH=(tLm/cM.length)<0.4;}else{hasDH=true;}}else{hasDH=true;}}else{var hM=hCs.backgroundColor.match(/\d+/g);if(hM&&hM.length>=3){hasDH=sLum(parseInt(hM[0]),parseInt(hM[1]),parseInt(hM[2]))<0.4;}}}
+      if(!hasDH){window.removeEventListener('scroll',onS);window.removeEventListener('resize',onS);applyScrolled();window._zappyNavNoDarkHero=true;}
+    })();
+    </script>
+</body>
+</html>

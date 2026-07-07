@@ -1,0 +1,90 @@
+# LOLLIPOP — Generative Engine Optimization Map
+
+> A vibrant and fun inflatable entertainment business specializing in birthday parties and events. The business offers a wide range of services including jumping inflatables for kids, decorative inflatables, game booths, food stalls, and full event production. The brand is energetic, colorful, and family-friendly, targeting parents and event organizers looking to create memorable celebrations for children.
+
+---
+
+## Pages
+
+### בית
+https://lollipop-fa615b2f.zappy5.app
+LOLLIPOP מביאה לכם עולם של מתקנים מתנפחים, דוכני משחק וצבע לאירועים. תנו לילדים שלכם את המסיבה הכי שמחה ומרגשת שהם חלמו עליה. צרו איתנו קשר עוד היום!
+
+### שירותים
+https://lollipop-fa615b2f.zappy5.app/services
+מחפשים אטרקציה מושלמת לאירוע? מגוון שירותי LOLLIPOP כולל מתנפחים צבעוניים, עמדות מזון ודוכני הפעלה שיהפכו כל מסיבה לחגיגה אמיתית. היכנסו לבחור את הכיף שלכם!
+
+### הפקת אירועים
+https://lollipop-fa615b2f.zappy5.app/event-production
+צריכים יד מקצועית להפקת האירוע? LOLLIPOP מתמחים בהפקה כוללת של אירועים צבעוניים ומלאי חיים, משלב הרעיון ועד הביצוע האחרון. הפכו כל חלום לחגיגה בלתי נשכחת!
+
+### אודות
+https://lollipop-fa615b2f.zappy5.app/about
+LOLLIPOP זה לא רק מתנפחים, זו משפחה שמאמינה בכיף אמיתי. גלו את הסיפור מאחורי המותג הצבעוני שלנו ואת התשוקה ליצור אירועים בלתי נשכחים לכל המשפחה. בואו להכיר אותנו!
+
+### צור קשר
+https://lollipop-fa615b2f.zappy5.app/contact
+יש לכם רעיון לחגיגה? אנחנו כאן להגשים אותו! צרו קשר עם LOLLIPOP עוד היום ונבנה יחד אירוע בלתי נשכח מלא בצחוק, צבע ומתנפחים שילדים אוהבים. אנחנו מחכים לשמוע מכם!
+
+### תודה שפניתם אלינו
+https://lollipop-fa615b2f.zappy5.app/thank-you
+LOLLIPOP - תודה שפניתם אלינו
+
+## Legal & Policy
+
+### Privacy Policy
+https://lollipop-fa615b2f.zappy5.app/privacy
+Information about how user data is collected, stored, and protected.
+
+### Terms & Conditions
+https://lollipop-fa615b2f.zappy5.app/terms
+Legal terms describing service usage, rights, and policies.
+
+### Accessibility Statement
+https://lollipop-fa615b2f.zappy5.app/accessibility
+Information about WCAG compliance and accessibility features.
+
+---
+
+## How to Contact Us
+
+- (No contact details configured yet.)
+
+### Contact form
+- URL: https://lollipop-fa615b2f.zappy5.app/contact
+- Endpoint: https://lollipop-fa615b2f.zappy5.app/api/email/contact-form
+- Method: POST
+- Content-Type: application/json
+- Fields:
+  - `name` (text)
+  - `email` (email)
+  - `phone` (tel)
+  - `kids` (number)
+  - `message` (textarea)
+  - `privacy_consent` (checkbox)
+
+---
+
+# Business Context (for LLM understanding)
+
+## About LOLLIPOP
+A vibrant and fun inflatable entertainment business specializing in birthday parties and events. The business offers a wide range of services including jumping inflatables for kids, decorative inflatables, game booths, food stalls, and full event production. The brand is energetic, colorful, and family-friendly, targeting parents and event organizers looking to create memorable celebrations for children.
+
+## Target Audience
+- משפחות עם ילדים, מארגני אירועים וימי הולדת
+- מארגני אירועים למשפחות
+- מארגני אירועים עסקיים
+- ספקי בידור לילדים
+- בתי ספר
+- הפקות אירועים
+
+## Industry
+Event Entertainment & Party Rentals
+
+---
+
+# Machine-readable feeds
+
+- Sitemap (XML): https://lollipop-fa615b2f.zappy5.app/sitemap.xml
+- Robots: https://lollipop-fa615b2f.zappy5.app/robots.txt
+- Flattened page text (for LLMs): https://lollipop-fa615b2f.zappy5.app/llms-full.txt
